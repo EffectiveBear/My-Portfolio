@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Calligraffitti&family=League+Spartan:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Calligraffitti&family=Comfortaa:wght@300..700&family=League+Spartan:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 @import "tailwindcss";
+
 body {
   font-family: "Titillium web", sans-serif;
   background-color: #f2f2f2;
@@ -10,15 +11,16 @@ body {
 }
 
 .bad-script-custom-font {
-  font-family: "Bad Script", cursive;
-  font-weight: 600;
+  font-family: "Comfortaa", cursive;
+  font-weight: 300;
   font-style: normal;
 }
 .league-spartan {
   font-family: "League Spartan", sans-serif;
 }
 .text-custom-color {
-  color: #eae4d5;
+  /* color: #bbd58e; */
+  color: #bfe47f;
 }
 .bg-custom-color {
   background-color: #f3eeee;

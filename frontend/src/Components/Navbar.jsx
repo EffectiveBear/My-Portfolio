@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import myImageIcon from "../assets/my-icon.jpg";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
+import './customCss.css'
 
 const Navbar = () => {
-  const navElementAnimate = useRef([]);
   useEffect(() => {
     gsap
       .timeline()
@@ -107,7 +107,7 @@ const Navbar = () => {
           x: "",
           y: "",
           color: "",
-          stagger: 0.1,
+          stagger: 0.06,
           fontSize: "",
         }
       );
@@ -115,24 +115,27 @@ const Navbar = () => {
 
   return (
     <nav
-      className="flex justify-between items-center shadow-sm bg-custom-color"
+      className="flex justify-between items-center shadow-sm bg-custom-color flex-col md:flex-row md:justify-between md:items-center"
       style={{ backgroundColor: "#f3eeee9c" }}
     >
       {/* this will be the image that will travel */}
-      <div className="flex justify-start items-center mx-4 h-[55px]">
-        <div className="rounded-full border-2 border-black w-8 h-8 overflow-hidden mx-2">
+      <div className="flex justify-start items-center mx-4 h-[55px] self-start">
+        <div className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 ">
           <img
             src={myImageIcon}
             alt="my image"
-            className="min-w-[90%] min-h-[90%] hover:scale-105 transition ease-linear duration-300 "
+            className="min-w-[90%] min-h-[90%] hover:scale-105 transition ease-linear duration-300  "
           />
         </div>
         <Link to="/">
           {" "}
           <div className="flex title-block-animation-gsap z-10 mt-1">
-            {"Ashu's World".split("").map((letter) => {
+            {"Ashu's World".split("").map((letter, key) => {
               return (
-                <p className="bad-script-custom-font text-gray-700 font-bold text-2xl px-1 cursor-pointer whitespace-pre title-each-letter-animation-gsap opacity-0">
+                <p
+                  key={key}
+                  className="bad-script-custom-font text-gray-700 font-extrabold text-2xl px-1 cursor-pointer whitespace-pre title-each-letter-animation-gsap opacity-0"
+                >
                   {letter}
                 </p>
               );
@@ -140,8 +143,8 @@ const Navbar = () => {
           </div>
         </Link>
       </div>
-      <div className="mr-20">
-        <ul className="flex justify-center items-center gap-10">
+      <div className="mx-20">
+        <ul className="flex justify-center items-center xs-gap-reduce gap-20 md:gap-15">
           {/*this is to compensate for the stagger effect..it staggger onnly for other not for this*/}
           <li className="hidden gsap-updown-custom-animate"></li>{" "}
           <Link to="/">
