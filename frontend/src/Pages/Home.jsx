@@ -1,58 +1,57 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import backgroundImageInHome from "../assets/home-bg-1.jpg";
 import backgroundImageInHome2 from "../assets/home-bg.jpg";
 import { gsap } from "gsap";
-import { CSSPlugin, ScrollTrigger } from "gsap/all";
 import "./customCSS.css";
 
 const Home = () => {
   const bgImageRef = useRef(null);
 
   const handleMouseMoveForOverlayEffect = (event) => {
-    const brightImageOverlay = document.querySelector("#bright-image-overlay");
-    const brightTextOverlay = document.querySelector("#bright-text-overlay");
+    const imageOverlay = document.querySelector("#bright-image-overlay");
+    const textOverlay = document.querySelector("#bright-text-overlay");
 
-    requestAnimationFrame(() => {
-      // darkImageOverlay.style.clipPath = `circle(20% at ${
-      //   (event.clientX / window.innerWidth) * 100
-      // }% ${(event.clientY / window.innerHeight) * 100}%)`;
-      //   brightImageOverlay.style.maskImage = `radial-gradient(circle at ${
-      //     (event.clientX / window.innerWidth) * 100
-      //   }% ${
-      //     (event.clientY / window.innerHeight) * 100
-      //   }%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 70%)`;
-      // });
-      if (window.innerWidth < 640) {
-        brightTextOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`;
-        brightImageOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`;
-      }
+    const overlayFunction = (DomSelector, event) => {
+      const elementRect = DomSelector.getBoundingClientRect();
 
-      // for image overlay
-      brightImageOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) ${
-        (event.clientX / window.innerWidth) * 100
-      }%, rgba(0, 0, 0, 0) ${(event.clientX / window.innerWidth) * 100}%)`;
-
-      //for text overlay
-      const textRect = brightTextOverlay.getBoundingClientRect();
-
-      if (event.clientX < textRect.x) {
-        brightTextOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 0%)`;
+      if (event.clientX < elementRect.x) {
+        DomSelector.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 0%)`;
         return;
-      } else if (event.clientX > textRect.x + textRect.width) {
-        brightTextOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%)`;
+      } else if (event.clientX > elementRect.x + elementRect.width) {
+        DomSelector.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%)`;
         return;
-      }
-      if (
-        event.clientX >= textRect.x &&
-        event.clientX <= textRect.x + textRect.width
-      ) {
-        brightTextOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) ${
-          ((event.clientX - textRect.x) / textRect.width) * 100
+      } else {
+        DomSelector.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) ${
+          ((event.clientX - elementRect.x) / elementRect.width) * 100
         }%, rgba(0, 0, 0, 0) ${
-          ((event.clientX - textRect.x) / textRect.width) * 100
+          ((event.clientX - elementRect.x) / elementRect.width) * 100
         }%)`;
       }
+    };
+
+    requestAnimationFrame(() => {
+      {
+        // darkImageOverlay.style.clipPath = `circle(20% at ${
+        //   (event.clientX / window.innerWidth) * 100
+        // }% ${(event.clientY / window.innerHeight) * 100}%)`;
+        //   brightImageOverlay.style.maskImage = `radial-gradient(circle at ${
+        //     (event.clientX / window.innerWidth) * 100
+        //   }% ${
+        //     (event.clientY / window.innerHeight) * 100
+        //   }%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 70%)`;
+        // });
+        if (window.innerWidth < 640) {
+        }
+        textOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`;
+        imageOverlay.style.maskImage = `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`;
+      }
+
+      imageOverlay.style.transtion = "none";
+      textOverlay.style.transtion = "none";
+
+      overlayFunction(imageOverlay, event); //image-overlay
+      overlayFunction(textOverlay, event); //text-overlay
     });
   };
 
@@ -102,14 +101,13 @@ const Home = () => {
               id="bright-image-overlay"
               className="w-full h-full object-cover filter brightness-[65%] z-100"
               style={{
-                transition: "mask-image 0.4s ease-linear",
                 maskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`,
               }}
             />
             <img
               src={backgroundImageInHome}
               alt=""
-              className="w-full h-full object-cover absolute top-0 sm:block z-95"
+              className="w-full h-full object-cover absolute top-0 sm:block z-95 "
             />
           </div>
           <div className="absolute top-1/4 flex flex-col items-center justify-between">
@@ -118,7 +116,6 @@ const Home = () => {
                 className="flex flex-col items-center pointer-events-none z-20"
                 id="bright-text-overlay"
                 style={{
-                  transition: "mask-image 0.4s ease-linear",
                   maskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`,
                 }}
               >

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import myImageIcon from "../assets/my-icon.jpg";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
-import './customCss.css'
+import "./customCss.css";
 
 const Navbar = () => {
   useEffect(() => {
@@ -92,22 +92,23 @@ const Navbar = () => {
         fontFamily: "",
         fontWeight: "",
         padding: "",
+        y: "",
       })
       .fromTo(
         ".title-each-letter-animation-gsap",
         {
-          opacity: 1,
+          opacity: 0,
           color: "#ffffff",
-          x: window.innerWidth / 4,
-          y: window.innerHeight / 4,
+          x: window.innerWidth / 10,
+          // y: window.innerHeight / 4,
         },
         {
-          duration: 1,
+          duration: 0.6,
           opacity: 1,
           x: "",
           y: "",
           color: "",
-          stagger: 0.06,
+          stagger: 0.04,
           fontSize: "",
         }
       );
