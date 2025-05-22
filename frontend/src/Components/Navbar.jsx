@@ -121,11 +121,11 @@ const Navbar = () => {
     >
       {/* this will be the image that will travel */}
       <div className="flex justify-start items-center mx-4 h-[55px] self-start">
-        <div className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 ">
+        <div id="top-moving-photo-icon" className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 z-[9999]">
           <img
             src={myImageIcon}
             alt="my image"
-            className="min-w-[90%] min-h-[90%] hover:scale-105 transition ease-linear duration-300  "
+            className="min-w-[90%] min-h-[90%] hover:scale-110 transition ease-linear duration-300  "
           />
         </div>
         <Link to="/">

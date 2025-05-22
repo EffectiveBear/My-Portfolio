@@ -3,3 +3,6 @@
     gap: 6;
   }
 }
+.hover-transparent-for-border:hover{
+  border:transparent;
+}

@@ -21,7 +21,19 @@ body {
 .text-custom-color {
   /* color: #bfe47f; */
   color: #bbd58e;
+  border-color: #bbd58e;
 }
 .bg-custom-color {
   background-color: #f3eeee;
+}
+
+.bg-gradient-custom {
+  background: #f2f2f2;
+  background: linear-gradient(
+    180deg,
+    rgba(242, 242, 242, 1) 0%,
+    rgba(221, 240, 227, 1) 52%,
+    rgba(217, 217, 189, 1) 100%,
+    rgba(234, 228, 213, 0.54) 100%
+  );
 }
