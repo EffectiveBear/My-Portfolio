@@ -44,8 +44,8 @@ const AboutMe = () => {
           gsap.timeline().to(topIconBox, {
             x: imageBox.left + imageBox.width / 2,
             y: imageBox.top + imageBox.height / 2,
-            xPercent:-50,
-            yPercent:-50,
+            xPercent: -50,
+            yPercent: -50,
             transformOrigin: "50% 50%",
             scale: 8,
             rotate: 360,
@@ -74,27 +74,21 @@ const AboutMe = () => {
       location.reload();
     });
   }, []);
+
   return (
     <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link">
-      <div className="w-[95vw] sm:w-[80vw] h-[60vh] flex  flex-col-reverse lg:flex-row justify-between mt-[200px] lg:mt-auto ">
-        <div className="text-box basis-3/5   h-3/5 sm:h-full flex justify-center items-center">
-          <div className="my-6 mt-20 flex flex-col justify-start items-center">
-            <h3 className="underline underline-offset-8 text-3xl titillium-web my-10 self-start">
+      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[60vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
+        <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
+          <div className="my-6 sm:mt-20 mt-1 flex flex-col justify-start items-center">
+            <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 self-start">
               ABOUT ME
             </h3>
             <p
               ref={aboutMeTextRef}
               className="whitespace-pre-wrap text-left text-lg self-start overflow-visible max-w-[900px]"
             >
-              {/* I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE
-              Pulchowk Campus. I'm interested in how things work—whether it 's
-              structures in the real world or systems in the digital one.
-              Alongside my engineering studies, I enjoy learning about design,
-              development, and building things that are both useful and
-              thoughtful. Lately, I've been exploring web development and
-              finding ways to bring ideas to life online. I value clarity,
-              curiosity, and good design:- whether in code, concrete, or
-              conversation. */}
+              {window.innerWidth < 1024 &&
+                `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
             </p>
           </div>
         </div>
