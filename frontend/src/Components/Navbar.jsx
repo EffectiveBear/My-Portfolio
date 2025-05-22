@@ -120,7 +120,7 @@ const Navbar = () => {
       style={{ backgroundColor: "#f3eeee9c" }}
     >
       {/* this will be the image that will travel */}
-      <div className="flex justify-start items-center mx-4 h-[55px] self-start">
+      <div className="flex md:justify-start items-center  h-[55px] self-start m-auto md:mx-4">
         <div id="top-moving-photo-icon" className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 z-[9999]">
           <img
             src={myImageIcon}
@@ -130,7 +130,7 @@ const Navbar = () => {
         </div>
         <Link to="/">
           {" "}
-          <div className="flex title-block-animation-gsap z-10 mt-1">
+          <div className="flex title-block-animation-gsap z-10 mt-1 mx-auto ml-auto md:mx-auto">
             {"Ashu's World".split("").map((letter, key) => {
               return (
                 <p

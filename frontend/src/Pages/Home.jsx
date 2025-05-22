@@ -6,12 +6,15 @@ import myImageIcon from "../assets/my-icon.jpg";
 import "./customCSS.css";
 import Typed from "typed.js";
 import { Link as ScrollLink } from "react-scroll";
+import EducationImported from "./Education/Education";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Home = () => {
   return (
     <>
       <Hero />
       <AboutMe />
+      <Education />
     </>
   );
 };
@@ -27,9 +30,9 @@ const AboutMe = () => {
       gsap.matchMedia().add("(min-width: 1024px)", () => {
         if (
           window.scrollY + window.innerHeight >
-            imageBox.top + imageBox.height * 0.4 &&
-          window.scrollY + window.innerHeight <
-            imageBox.top + imageBox.height * 1.5
+          imageBox.top + imageBox.height * 0.4
+          // window.scrollY + window.innerHeight <
+          //   imageBox.top + imageBox.height * 2
         ) {
           new Typed(aboutMeTextRef.current, {
             strings: [
@@ -76,10 +79,10 @@ const AboutMe = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link">
-      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[60vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
+    <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link shadow-lg">
+      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
         <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
-          <div className="my-6 sm:mt-20 mt-1 flex flex-col justify-start items-center">
+          <div className="my-6 mt-1 flex flex-col justify-center items-center">
             <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 self-start">
               ABOUT ME
             </h3>
@@ -311,4 +314,51 @@ const Hero = () => {
     </>
   );
 };
+
+const Education = () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".education-container-rect-gsap",
+          start: "top 80%",
+          once: true,
+          toggleActions: "play reverse play reverse",
+        },
+      })
+      .fromTo(
+        ".education-text-animate-gsap",
+        {
+          y: -100,
+          opacity: 0,
+          scale: 1.4,
+        },
+        {
+          duration: 1,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+        }
+      )
+  }, []);
+
+  return (
+    <>
+      <div className="flex justify-center items-center education-container-rect-gsap bg-gradient-custom-education">
+        <div className="w-[90vw] flex justify-center items-center flex-col mt-20">
+          <div>
+            <h2 className="underline underline-offset-8 titillium-web text-2xl my-5 education-text-animate-gsap">
+              MY EDUCATION
+            </h2>
+          </div>
+          <EducationImported />
+        </div>
+      </div>
+      ;
+    </>
+  );
+};
+
 export default Home;

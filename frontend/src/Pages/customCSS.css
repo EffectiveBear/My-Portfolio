@@ -18,6 +18,16 @@
     #eae4d58a 100%
   );
 }
+.bg-gradient-custom-education{
+  background: #f2f2f2;
+  background: linear-gradient(
+    270deg,
+    rgb(242, 242, 242) 0%,
+    #ddf0e3 52%,
+    #d9d9bd 78%,
+    #eae4d58a 100%
+  );
+}
 .text-custom-color-green {
   color: #eae4d5;
 }
