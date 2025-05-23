@@ -11,7 +11,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Home = () => {
   gsap.registerPlugin(ScrollTrigger);
-
+  useEffect(() => {
+    window.addEventListener("resize", () => {
       location.reload();
     });
     return () => {
@@ -19,7 +20,8 @@ const Home = () => {
         location.reload();
       });
     };
-  });
+  }, []);
+
   return (
     <>
       <Hero />
@@ -240,25 +242,26 @@ const AboutMe = () => {
   const aboutMeTextRef = useRef(null);
 
   useEffect(() => {
-    let imageContainerGsap = document.querySelector(".image-container-gsap").getBoundingClientRect();
+    let imageContainerGsap = document
+      .querySelector(".image-container-gsap")
+      .getBoundingClientRect();
     const topIconBox = document.querySelector("#top-moving-photo-icon");
     const gsapTransitionforIconBox = () => {
       gsap.matchMedia().add("(min-width: 1024px)", () => {
         gsap.timeline({
-          scrollTrigger:{
+          scrollTrigger: {
             trigger: imageContainerGsap,
-            start :"top 80%",
-            toggleActions:"play reverse play reverse"
-          }
-        })
-        .to
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        }).to({topIconBox})
       });
     };
     // gsapTransitionforIconBox();
     window.addEventListener("scroll", () => {
       if (
         window.scrollY + window.innerHeight >
-        imageBox.top + imageBox.height * 0.4
+        imageContainerGsap.top + imageContainerGsap.height * 0.4
       ) {
         new Typed(aboutMeTextRef.current, {
           strings: [
