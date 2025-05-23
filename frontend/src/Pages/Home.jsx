@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import backgroundImageInHome from "../assets/home-bg-1.jpg";
 import backgroundImageInHome2 from "../assets/home-bg.jpg";
 import { gsap } from "gsap";
@@ -12,6 +12,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Home = () => {
   gsap.registerPlugin(ScrollTrigger);
 
+      location.reload();
+    });
+    return () => {
+      window.removeEventListener("resize", () => {
+        location.reload();
+      });
+    };
+  });
   return (
     <>
       <Hero />
@@ -19,94 +27,6 @@ const Home = () => {
       <Education />
       {/* <Skills /> */}
     </>
-  );
-};
-
-const AboutMe = () => {
-  const aboutMeTextRef = useRef(null);
-
-  useEffect(() => {
-    let imageBox = document.querySelector(".image-box").getBoundingClientRect();
-    const topIconBox = document.querySelector("#top-moving-photo-icon");
-    window.scrollTo(0, 0);
-    const gsapTransitionforIconBox = () => {
-      gsap.matchMedia().add("(min-width: 1024px)", () => {
-        if (
-          window.scrollY + window.innerHeight >
-          imageBox.top + imageBox.height * 0.4
-        ) {
-          new Typed(aboutMeTextRef.current, {
-            strings: [
-              "I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation.",
-            ],
-            typeSpeed: 1,
-            backSpeed: 0,
-            showCursor: false,
-            loop: false,
-          });
-
-          gsap.timeline().to(topIconBox, {
-            x: imageBox.left + imageBox.width / 2,
-            y: imageBox.top + imageBox.height / 2,
-            xPercent: -50,
-            yPercent: -50,
-            transformOrigin: "50% 50%",
-            scale: 8,
-            rotate: 360,
-            border: "2px solid #ddf0e3",
-            duration: 0.75,
-          });
-        } else {
-          gsap.timeline().to(topIconBox, {
-            x: "",
-            y: "",
-            transform: "",
-            duration: 0.75,
-            rotate: 0,
-            scale: 1,
-            border: "",
-          });
-        }
-      });
-    };
-
-    // gsapTransitionforIconBox();
-    window.addEventListener("scroll", () => {
-      gsapTransitionforIconBox();
-    });
-    window.addEventListener("resize", () => {
-      location.reload();
-    });
-  }, []);
-
-  return (
-    <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link shadow-lg">
-      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] xl:h-[80vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
-        <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
-          <div className="my-6 mt-1 flex flex-col justify-center items-center">
-            <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 ml-4 self-start">
-              ABOUT ME
-            </h3>
-            <p
-              ref={aboutMeTextRef}
-              className="whitespace-pre-wrap text-left sm:text-lg text-md px-4 self-start overflow-visible max-w-[900px]"
-            >
-              {window.innerWidth < 1024 &&
-                `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
-            </p>
-          </div>
-        </div>
-        <div className="image-box basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-          <div className="rounded-full w-[60vw] overflow-hidden mx-2 border-3  justify-start items-center lg:hidden flex">
-            <img
-              src={myImageIcon}
-              alt="my image"
-              className="scale-110 object-cover w"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
@@ -313,6 +233,74 @@ const Hero = () => {
         </div>
       </div>
     </>
+  );
+};
+
+const AboutMe = () => {
+  const aboutMeTextRef = useRef(null);
+
+  useEffect(() => {
+    let imageContainerGsap = document.querySelector(".image-container-gsap").getBoundingClientRect();
+    const topIconBox = document.querySelector("#top-moving-photo-icon");
+    const gsapTransitionforIconBox = () => {
+      gsap.matchMedia().add("(min-width: 1024px)", () => {
+        gsap.timeline({
+          scrollTrigger:{
+            trigger: imageContainerGsap,
+            start :"top 80%",
+            toggleActions:"play reverse play reverse"
+          }
+        })
+        .to
+      });
+    };
+    // gsapTransitionforIconBox();
+    window.addEventListener("scroll", () => {
+      if (
+        window.scrollY + window.innerHeight >
+        imageBox.top + imageBox.height * 0.4
+      ) {
+        new Typed(aboutMeTextRef.current, {
+          strings: [
+            "I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation.",
+          ],
+          typeSpeed: 1,
+          backSpeed: 0,
+          showCursor: false,
+          loop: false,
+        });
+      }
+    });
+  }, []);
+
+  return (
+    <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link shadow-lg">
+      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] xl:h-[80vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
+        <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
+          <div className="my-6 mt-1 flex flex-col justify-center items-center">
+            <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 ml-4 self-start">
+              ABOUT ME
+            </h3>
+            <p
+              ref={aboutMeTextRef}
+              className="whitespace-pre-wrap text-left sm:text-lg text-md px-4 self-start overflow-visible max-w-[900px]"
+            >
+              {window.innerWidth < 1024 &&
+                `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
+            </p>
+          </div>
+        </div>
+        <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
+          <div className="rounded-full w-[60vw] overflow-hidden mx-2 border-3  justify-start items-center lg:hidden flex">
+            <img
+              src={myImageIcon}
+              alt="my image"
+              className="scale-110 object-cover w"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
