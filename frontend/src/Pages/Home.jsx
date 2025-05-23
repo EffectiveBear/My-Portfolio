@@ -10,11 +10,14 @@ import EducationImported from "./Education/Education";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Home = () => {
+  gsap.registerPlugin(ScrollTrigger);
+
   return (
     <>
       <Hero />
       <AboutMe />
       <Education />
+      {/* <Skills /> */}
     </>
   );
 };
@@ -31,8 +34,6 @@ const AboutMe = () => {
         if (
           window.scrollY + window.innerHeight >
           imageBox.top + imageBox.height * 0.4
-          // window.scrollY + window.innerHeight <
-          //   imageBox.top + imageBox.height * 2
         ) {
           new Typed(aboutMeTextRef.current, {
             strings: [
@@ -69,7 +70,7 @@ const AboutMe = () => {
       });
     };
 
-    gsapTransitionforIconBox();
+    // gsapTransitionforIconBox();
     window.addEventListener("scroll", () => {
       gsapTransitionforIconBox();
     });
@@ -80,15 +81,15 @@ const AboutMe = () => {
 
   return (
     <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link shadow-lg">
-      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
+      <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] xl:h-[80vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
         <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
           <div className="my-6 mt-1 flex flex-col justify-center items-center">
-            <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 self-start">
+            <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 ml-4 self-start">
               ABOUT ME
             </h3>
             <p
               ref={aboutMeTextRef}
-              className="whitespace-pre-wrap text-left text-lg self-start overflow-visible max-w-[900px]"
+              className="whitespace-pre-wrap text-left sm:text-lg text-md px-4 self-start overflow-visible max-w-[900px]"
             >
               {window.innerWidth < 1024 &&
                 `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
@@ -273,7 +274,7 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-full relative">
+            <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-[90%] sm:w-full relative">
               <div className="self-start  relative transition-all duration-300 flex hover:scale-110 cursor-pointer my-5">
                 <button
                   className="bright-btn-overlay text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left w-fit z-10 sm:px-7 sm:py-3 py-3  px-3  border-3 rounded-lg titillium-web font-light"
@@ -316,8 +317,6 @@ const Hero = () => {
 };
 
 const Education = () => {
-  gsap.registerPlugin(ScrollTrigger);
-
   useEffect(() => {
     gsap
       .timeline({
@@ -341,7 +340,7 @@ const Education = () => {
           opacity: 1,
           scale: 1,
         }
-      )
+      );
   }, []);
 
   return (
@@ -356,9 +355,54 @@ const Education = () => {
           <EducationImported />
         </div>
       </div>
-      ;
     </>
   );
 };
 
+const Skills = () => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const topIconBox = document.querySelector("#top-moving-photo-icon");
+    const topIconBoxRect = topIconBox.getBoundingClientRect();
+    const skillsContainerGsap = document.querySelector(
+      ".skills-container-gsap"
+    );
+
+    const skillsContainerRectGsap = skillsContainerGsap.getBoundingClientRect();
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: skillsContainerGsap,
+          start: "top 80%",
+          toggleActions: "play reverse play reverse",
+        },
+      })
+      .fromTo(
+        topIconBox,
+        {
+          y: topIconBoxRect.top + topIconBoxRect.height / 2,
+          x: topIconBoxRect.left + topIconBoxRect.width / 2,
+        },
+        {
+          duration: 1,
+          y: skillsContainerRectGsap.top + 0.1 * skillsContainerRectGsap.height,
+          x: skillsContainerRectGsap.width / 2,
+          xPercent: -50,
+          scale: 10,
+          opacity: 1,
+        }
+      );
+  }, []);
+  return (
+    <>
+      <div className="skills-container-gsap bg-gradient-custom-skills flex justify-ceneter items-center z-0">
+        <div className="flex min-h-[60vh] justify-center items-center">
+          dhyaan
+        </div>
+      </div>
+    </>
+  );
+};
 export default Home;

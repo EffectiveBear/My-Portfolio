@@ -28,6 +28,16 @@
     #eae4d58a 100%
   );
 }
+.bg-gradient-custom-skills{
+  background: #f2f2f2;
+  background: linear-gradient(
+    135deg,
+    rgb(242, 242, 242) 0%,
+    #ddf0e3 20%,
+    #d9d9bd 52%,
+    #eae4d58a 100%
+  );
+}
 .text-custom-color-green {
   color: #eae4d5;
 }
