@@ -13,6 +13,7 @@ const Home = () => {
   gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
     window.addEventListener("resize", () => {
+      window.scrollTo(0, 0);
       location.reload();
     });
     return () => {
@@ -27,7 +28,7 @@ const Home = () => {
       <Hero />
       <AboutMe />
       <Education />
-      {/* <Skills /> */}
+      <Skills />
     </>
   );
 };
@@ -246,22 +247,31 @@ const AboutMe = () => {
       .querySelector(".image-container-gsap")
       .getBoundingClientRect();
     const topIconBox = document.querySelector("#top-moving-photo-icon");
-    const gsapTransitionforIconBox = () => {
-      gsap.matchMedia().add("(min-width: 1024px)", () => {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: imageContainerGsap,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
-          },
-        }).to({topIconBox})
+    gsap.matchMedia().add("(min-width: 1024px)", () => {
+      const iconMoveTimeline = gsap.timeline({ paused: true }).to(topIconBox, {
+        x: imageContainerGsap.left + imageContainerGsap.width / 2,
+        y: imageContainerGsap.top + imageContainerGsap.height / 2,
+        xPercent: -50,
+        yPercent: -50,
+        transformOrigin: "50% 50%",
+        scale: 8,
+        rotate: 360,
+        border: "2px solid #ddf0e3",
+        duration: 0.75,
       });
-    };
-    // gsapTransitionforIconBox();
+
+      ScrollTrigger.create({
+        trigger: ".image-container-gsap",
+        start: "top 60%",
+        onEnter: () => iconMoveTimeline.play(),
+        onLeaveBack: () => iconMoveTimeline.reverse(),
+      });
+    });
     window.addEventListener("scroll", () => {
       if (
         window.scrollY + window.innerHeight >
-        imageContainerGsap.top + imageContainerGsap.height * 0.4
+          imageContainerGsap.top + imageContainerGsap.height * 0.4 &&
+        window.innerWidth >= 1024
       ) {
         new Typed(aboutMeTextRef.current, {
           strings: [
@@ -274,6 +284,25 @@ const AboutMe = () => {
         });
       }
     });
+    return () => {
+      window.removeEventListener("scroll", () => {
+        if (
+          window.scrollY + window.innerHeight >
+            imageContainerGsap.top + imageContainerGsap.height * 0.4 &&
+          window.innerWidth >= 1024
+        ) {
+          new Typed(aboutMeTextRef.current, {
+            strings: [
+              "I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation.",
+            ],
+            typeSpeed: 1,
+            backSpeed: 0,
+            showCursor: false,
+            loop: false,
+          });
+        }
+      });
+    };
   }, []);
 
   return (
@@ -309,34 +338,36 @@ const AboutMe = () => {
 
 const Education = () => {
   useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".education-container-rect-gsap",
-          start: "top 80%",
-          once: true,
-          toggleActions: "play reverse play reverse",
-        },
-      })
-      .fromTo(
-        ".education-text-animate-gsap",
-        {
-          y: -100,
-          opacity: 0,
-          scale: 1.4,
-        },
-        {
-          duration: 1,
-          y: 0,
-          opacity: 1,
-          scale: 1,
-        }
-      );
+    gsap.matchMedia().add("(min-width: 1024px)", () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".education-container-rect-gsap",
+            start: "top 80%",
+            once: true,
+            toggleActions: "play reverse play reverse",
+          },
+        })
+        .fromTo(
+          ".education-text-animate-gsap",
+          {
+            y: -100,
+            opacity: 0,
+            scale: 1.4,
+          },
+          {
+            duration: 1,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+          }
+        );
+    });
   }, []);
 
   return (
     <>
-      <div className="flex justify-center items-center education-container-rect-gsap bg-gradient-custom-education">
+      <div className="flex justify-center items-center education-container-rect-gsap bg-gradient-custom-education shadow-2xl">
         <div className="w-[90vw] flex justify-center items-center flex-col mt-20">
           <div>
             <h2 className="underline underline-offset-8 titillium-web text-2xl my-5 education-text-animate-gsap">
@@ -355,42 +386,48 @@ const Skills = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const topIconBox = document.querySelector("#top-moving-photo-icon");
-    const topIconBoxRect = topIconBox.getBoundingClientRect();
     const skillsContainerGsap = document.querySelector(
       ".skills-container-gsap"
     );
 
     const skillsContainerRectGsap = skillsContainerGsap.getBoundingClientRect();
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: skillsContainerGsap,
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
-        },
-      })
-      .fromTo(
-        topIconBox,
-        {
-          y: topIconBoxRect.top + topIconBoxRect.height / 2,
-          x: topIconBoxRect.left + topIconBoxRect.width / 2,
-        },
-        {
+    gsap.matchMedia().add("(min-width: 1024px)", () => {
+      const iconMoveTimeline = gsap
+        .timeline({ paused: true })
+        .to(topIconBox, {
           duration: 1,
-          y: skillsContainerRectGsap.top + 0.1 * skillsContainerRectGsap.height,
-          x: skillsContainerRectGsap.width / 2,
+          x: skillsContainerRectGsap.left + skillsContainerRectGsap.width / 2,
+          y: skillsContainerRectGsap.top + skillsContainerRectGsap.height / 2,
           xPercent: -50,
+          yPercent: -50,
+          border: "2.5px solid #4e73dc",
           scale: 10,
-          opacity: 1,
-        }
-      );
+          rotate: 720,
+          ease: "circ.inOut",
+        })
+        .to(".skills-big-container-gsap", {
+          duration: 0.6,
+          ease: "power3.inOut",
+          background:
+            "linear-gradient(90deg,rgba(242, 242, 242, 0.49) 6%, rgba(212, 186, 116, 0.51) 21%, rgba(93, 131, 204, 0.47) 100%, rgba(79, 124, 215, 0.5) 56%)",
+        });
+
+      ScrollTrigger.create({
+        trigger: skillsContainerGsap,
+        start: "top 90%",
+        onEnter: () => iconMoveTimeline.play(),
+        onLeaveBack: () => iconMoveTimeline.reverse(),
+      });
+    });
   }, []);
   return (
     <>
-      <div className="skills-container-gsap bg-gradient-custom-skills flex justify-ceneter items-center z-0">
-        <div className="flex min-h-[60vh] justify-center items-center">
-          dhyaan
+      <div className="bg-gradient-custom-skills flex justify-ceneter items-center z-0 skills-big-container-gsap">
+        <div className="flex min-h-[60vh] justify-center items-center w-[90vw]">
+          <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap">
+            d
+          </div>
+          <div className=" min-w-1/2 min-h-full">d</div>
         </div>
       </div>
     </>

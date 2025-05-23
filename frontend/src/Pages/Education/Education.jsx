@@ -26,28 +26,30 @@ const Education = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".education-container-rect-gsap",
-          start: "top 70%",
-          once: true,
-          toggleActions: "play reverse play reverse",
-        },
-      })
-      .fromTo(
-        ".education-card-animation-gsap",
-        {
-          y: -75,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          duration: 1,
-          opacity: 1,
-          stagger: 0.3,
-        }
-      );
+    gsap.matchMedia().add("(min-width: 1024px)", () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".education-container-rect-gsap",
+            start: "top 70%",
+            once: true,
+            toggleActions: "play reverse play reverse",
+          },
+        })
+        .fromTo(
+          ".education-card-animation-gsap",
+          {
+            y: -75,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            duration: 1,
+            opacity: 1,
+            stagger: 0.3,
+          }
+        );
+    });
   }, []);
   return (
     <div className="container">
