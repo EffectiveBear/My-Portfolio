@@ -23,13 +23,7 @@ const Contact = () => {
   }, []);
   const navigate = useNavigate();
 
-  const swipeHandler = useSwipeable({
-    onSwipedLeft: () => {
-      navigate("/feats");
-    },
-    preventDefaultTouchmoveEvent: true,
-    trackTouch: true,
-  });
+  
   return <div>Contact</div>;
 };
 

@@ -11,9 +11,12 @@ body {
 }
 
 .bad-script-custom-font {
-  font-family: "Comfortaa", cursive;
+  font-family: "Comfortaa", sans-serif;
   font-weight: 300;
   font-style: normal;
+}
+.true-bad-script-custom-font{
+  font-family: "Bad Script",cursive;
 }
 .league-spartan {
   font-family: "League Spartan", sans-serif;

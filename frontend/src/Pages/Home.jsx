@@ -10,28 +10,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import myImageIcon from "../assets/my-icon.jpg";
 import myTreatIconPhoto from "../assets/my-treat-photo.jpg";
 import myEngineerIconPhoto from "../assets/my-engineer-photo.jpg";
-import { Link, useNavigate } from "react-router-dom";
-import { useSwipeable } from "react-swipeable";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const swipeHandler = useSwipeable({
-    onSwipedRight: () => {
-      navigate("/feats");
-    },
-    preventDefaultTouchmoveEvent: true,
-    trackTouch: true,
-  });
+  
 
   gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
     window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
       window.scrollTo(0, 0);
       location.reload();
     });
     return () => {
       window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth);
+        window.scrollTo(0, 0);
         location.reload();
       });
     };
@@ -39,11 +35,11 @@ const Home = () => {
 
   return (
     <>
-      <div {...swipeHandler}>
+      <div >
         <Hero />
-        <AboutMe />
+        <AboutMe windowWidth={windowWidth} />
         <Education />
-        <Skills />
+        <Skills windowWidth={windowWidth} />
       </div>
     </>
   );
@@ -257,18 +253,7 @@ const Hero = () => {
   );
 };
 
-const AboutMe = () => {
-  const [iconMoveErrorHandlingX, seticonMoveErrorHandlingX] = useState(null);
-  const [iconMoveErrorHandlingY, seticonMoveErrorHandlingY] = useState(null);
-
-  useEffect(() => {
-    // if (!iconMoveErrorHandlingX || !iconMoveErrorHandlingY) {
-    const topIconBox = document.querySelector("#top-moving-photo-icon");
-    const rect = topIconBox.getBoundingClientRect();
-    seticonMoveErrorHandlingY(rect.top);
-    seticonMoveErrorHandlingX(rect.left);
-    // }
-  }, []);
+const AboutMe = ({windowWidth}) => {
   useEffect(() => {
     const aboutMeTextRef = document.querySelector(".about-me-text");
     let imageContainerGsap = document
@@ -288,7 +273,7 @@ const AboutMe = () => {
         scale: 10,
         rotate: 360,
         border: "2px solid #ddf0e3",
-        duration: 0.75,
+        duration: 0.6,
         onStart: () => {
           iconBoxPhoto.src = myEngineerIconPhoto;
         },
@@ -350,7 +335,6 @@ const AboutMe = () => {
       window.removeEventListener("scroll", typewriter);
 
       aboutMeAllAnimationsGsap.revert();
-     
     };
   }, []);
 
@@ -363,15 +347,15 @@ const AboutMe = () => {
               ABOUT ME
             </h3>
             <p className="whitespace-pre-wrap text-left sm:text-lg text-md px-4 self-start overflow-visible max-w-[900px] about-me-text">
-              {window.innerWidth < 1024 &&
+              {windowWidth < 1024 &&
                 `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
             </p>
           </div>
         </div>
         <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-          <div className="rounded-full w-[40vw] overflow-hidden mx-2 border-3  justify-start items-center lg:hidden flex">
+          <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex  border-8 border-amber-50 ">
             <img
-              src={myImageIcon}
+              src={myEngineerIconPhoto}
               alt="my image"
               className="scale-110 object-cover w"
             />
@@ -426,7 +410,90 @@ const Education = () => {
   );
 };
 
-const Skills = () => {
+const Skills = ({windowWidth}) => {
+  useEffect(() => {
+    const canvasEl = document.querySelector("#canvas-bubbles");
+    const ctx = canvasEl.getContext("2d");
+
+    const containerRect = document
+      .querySelector(".skills-big-container-gsap")
+      .getBoundingClientRect();
+
+    canvasEl.width = containerRect.width;
+    canvasEl.height = containerRect.height;
+
+    const max_radius = 20;
+    const min_radius = 8;
+    const circleCount = Math.abs(canvasEl.width / 80);
+
+    const circles = Array.from({ length: circleCount }, () => ({
+      x: Math.random() * canvasEl.width,
+      y: Math.random() * canvasEl.height,
+      radius: Math.random() * max_radius + min_radius,
+      dx: (Math.random() - 0.5) * 4,
+      dy: (Math.random() - 0.5) * 4,
+      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+    }));
+
+    const drawCircles = () => {
+      ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+      circles.forEach((circle) => {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = circle.color;
+        ctx.fill();
+      });
+    };
+
+    const updateCircles = () => {
+      circles.forEach((circle) => {
+        circle.x += circle.dx;
+        circle.y += circle.dy;
+
+        if (
+          circle.x + circle.radius > canvasEl.width ||
+          circle.x - circle.radius < 0
+        )
+          circle.dx *= -1;
+        if (
+          circle.y + circle.radius > canvasEl.height ||
+          circle.y - circle.radius < 0
+        )
+          circle.dy *= -1;
+      });
+    };
+
+    let hasAnimated = false;
+
+    const animate = () => {
+      if (hasAnimated) return;
+      hasAnimated = true;
+
+      const loop = () => {
+        drawCircles();
+        updateCircles();
+        requestAnimationFrame(loop);
+      };
+      loop();
+    };
+
+    const handleScroll = () => {
+      const top = document
+        .querySelector(".skills-big-container-gsap")
+        .getBoundingClientRect().top;
+
+      if (window.scrollY + window.innerHeight > top) {
+        animate();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -440,11 +507,25 @@ const Skills = () => {
     );
 
     const skillsContainerRectGsap = skillsContainerGsap.getBoundingClientRect();
+    const imageContainerGsapRect = document
+      .querySelector(".image-container-gsap")
+      .getBoundingClientRect();
     const skillsAllAnimationGsap = gsap
       .matchMedia()
       .add("(min-width: 1024px)", () => {
         const iconMoveTimeline = gsap
           .timeline({ paused: true })
+          .set(topIconBox, {
+            x: imageContainerGsapRect.left + imageContainerGsapRect.width / 2,
+            y: imageContainerGsapRect.top + imageContainerGsapRect.height / 2,
+            xPercent: -50,
+            yPercent: -50,
+            transformOrigin: "50% 50%",
+            // scale: 10,
+            rotate: 360,
+            duration: 0,
+          })
+
           .to(topIconBox, {
             duration: 1,
             x: skillsContainerRectGsap.left + skillsContainerRectGsap.width / 2,
@@ -495,7 +576,9 @@ const Skills = () => {
             x: 0,
             opacity: 1,
             // ease: "bounce.inOut",
-          })
+          });
+        const skillsListZigzagTimeline = gsap
+          .timeline({ paused: true })
           .to(".skills-list-animation-gsap", {
             duration: 1,
             x: (i) => (i % 2 == 0 ? -75 : 75),
@@ -506,29 +589,34 @@ const Skills = () => {
           start: "top 80%",
           onEnter: async () => {
             await iconMoveTimeline.play();
-            skillListTimeline.play();
+            await skillListTimeline.play();
+            skillsListZigzagTimeline.play();
           },
           onLeaveBack: () => {
             iconMoveTimeline.progress(1).reverse();
+            skillsListZigzagTimeline.reverse();
             // skillListTimeline.reverse();
           },
         });
       });
     return () => {
       skillsAllAnimationGsap.revert();
+      // gsap.context(() => {
+      // }, ".image-container-gsap");
     };
   }, []);
   return (
     <>
-      <div className="bg-gradient-custom-skills flex justify-center items-center skills-big-container-gsap ">
+      <div className="bg-gradient-custom-skills flex justify-center items-center skills-big-container-gsap relative">
+        <canvas id="canvas-bubbles" className="absolute"></canvas>
         <div className="flex min-h-[50vh] justify-center items-center w-[90vw] flex-col lg:flex-row my-5">
           {/* This div is for floating image */}
           <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap">
-            {window.innerWidth < 1024 && (
+            {windowWidth < 1024 && (
               <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-                <div className="rounded-full w-[40vw] overflow-hidden mx-2 border-3  justify-start items-center lg:hidden flex">
+                <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
                   <img
-                    src={myImageIcon}
+                    src={myTreatIconPhoto}
                     alt="my image"
                     className="scale-110 object-cover w"
                   />

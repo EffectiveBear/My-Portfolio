@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import Navbar from "./Components/Navbar";
 import Feats from "./Pages/Feats/Feats";
+import Footer from "./Components/Footer/Footer"
 import gsap from "gsap";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <AnimatedRoutes />
+        <Footer/>
       </BrowserRouter>
     </>
   );
