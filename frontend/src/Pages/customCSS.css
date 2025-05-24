@@ -3,12 +3,15 @@
     font-size: 0.5rem;
   }
 }
+:root {
+  --page-updown-radius: 20%;
+}
 .xs-gap-reduce {
   @media (max-width: 440px) {
     gap: 6;
   }
 }
-.bg-gradient-custom-about-me{
+.bg-gradient-custom-about-me {
   background: #f2f2f2;
   background: linear-gradient(
     90deg,
@@ -18,17 +21,16 @@
     #eae4d58a 100%
   );
 }
-.bg-gradient-custom-education{
+.bg-gradient-custom-education {
   background: #f2f2f2;
   background: linear-gradient(
     270deg,
-    rgb(242, 242, 242) 0%,
-    #ddf0e3 52%,
-    #d9d9bd 78%,
-    #eae4d58a 100%
+    #f2f2f2 0%,
+    #eaf1ec 52%,
+    /* #c3c3c1 50%, */ /* #eae4d58a 100% */ #f2f2f2 100%
   );
 }
-.bg-gradient-custom-skills{
+.bg-gradient-custom-skills {
   background: #f2f2f2;
   background: linear-gradient(
     135deg,
@@ -38,6 +40,25 @@
     #eae4d58a 100%
   );
 }
-.text-custom-color-green {
-  color: #eae4d5;
+.bg-gradient-custom-skills-list {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 186, 116, 0.292) 0%,
+    rgba(93, 132, 204, 0.331) 100%
+  );
+  color: #4e73dc;
+  /* color: #333333; */
+}
+.bg-gradient-custom-feats {
+  background: #f2f2f2;
+  background: linear-gradient(
+    90deg,
+    #fdeec7b8 0%,
+    #ddf0e3 52%,
+    #fdeec7b8 100%
+  );
+}
+
+.compensate-class-for-hover-not-working-skill-list:hover {
+  transform: scale(1.1);
 }

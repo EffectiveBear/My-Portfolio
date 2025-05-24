@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import myImageIcon from "../assets/my-icon.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import "./customCss.css";
 
 const Navbar = () => {
+  const location = useLocation();
   useEffect(() => {
     gsap
       .timeline()
@@ -113,15 +114,30 @@ const Navbar = () => {
         }
       );
   }, []);
-
+  // useEffect(() => {
+  //   if (location.pathname !== "/") {
+  //     gsap.to("#top-moving-photo-icon", {
+  //       x: 0,
+  //       y: 0,
+  //       scale: "",
+  //       rotate: "",
+  //       duration: 0,
+  //     });
+  //   }
+  // }, [location.pathname]);
   return (
     <nav
-      className="flex justify-between items-center shadow-sm bg-custom-color flex-col md:flex-row md:justify-between md:items-center"
+      className="flex justify-between items-center bg-custom-color flex-col md:flex-row md:justify-between md:items-center shadow-xl"
       style={{ backgroundColor: "#f3eeee9c" }}
     >
       {/* this will be the image that will travel */}
       <div className="flex md:justify-start items-center  h-[55px] self-start m-auto md:mx-4">
-        <div id="top-moving-photo-icon" className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 z-[9999]">
+        {/* just for error handling  */}
+        <div id="top-moving-photo-original-position" className="self-center "></div>
+        <div
+          id="top-moving-photo-icon"
+          className="rounded-full w-8 h-8 overflow-hidden mx-2 border-3 z-[9999]"
+        >
           <img
             src={myImageIcon}
             alt="my image"
@@ -153,9 +169,9 @@ const Navbar = () => {
               Home
             </li>
           </Link>
-          <Link to="/vault">
+          <Link to="/feats-and-projects">
             <li className="gsap-updown-custom-animate -translate-y-4 opacity-0 cursor-pointer font-semibold text-gray-600 hover:text-black text-lg transition-all hover:scale-105 duration-300">
-              Vault
+              Feats/Projects
             </li>
           </Link>
           <Link to="/contact">

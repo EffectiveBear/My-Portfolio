@@ -27,28 +27,36 @@ const Education = () => {
 
   useEffect(() => {
     gsap.matchMedia().add("(min-width: 1024px)", () => {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".education-container-rect-gsap",
-            start: "top 70%",
-            once: true,
-            toggleActions: "play reverse play reverse",
-          },
+      const educationTimeline = gsap
+        .timeline({ paused: true })
+        .set(".education-card-animation-gsap", {
+          y: -75,
+          opacity: 0,
         })
-        .fromTo(
-          ".education-card-animation-gsap",
-          {
-            y: -75,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            duration: 1,
-            opacity: 1,
-            stagger: 0.3,
-          }
-        );
+        .to(".education-card-animation-gsap", {
+          y: 0,
+          duration: 1,
+          opacity: 1,
+          stagger: 0.3,
+        });
+
+      ScrollTrigger.create({
+        trigger: ".education-container-rect-gsap",
+        start: "top 60%",
+        once:true,
+        onEnter: () => educationTimeline.play(),
+        // onLeaveBack: () => educationTimeline.progress(1).reverse(),
+      });
+      // gsap
+      //   .timeline({
+      //     scrollTrigger: {
+      //       trigger: ".education-container-rect-gsap",
+      //       start: "top 70%",
+      //       once: true,
+      //       toggleActions: "play reverse play reverse",
+      //     },
+      //   })
+      //   .fromTo(".education-card-animation-gsap", {}, {});
     });
   }, []);
   return (
