@@ -15,8 +15,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  
-
   gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -35,7 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <div >
+      <div>
         <Hero />
         <AboutMe windowWidth={windowWidth} />
         <Education />
@@ -176,7 +174,7 @@ const Hero = () => {
               className="w-full h-full object-cover absolute top-0 sm:block z-95 "
             />
           </div>
-          <div className="absolute top-1/4 flex flex-col items-center justify-between md:h-1/2 h-1/3">
+          <div className="absolute top-1/4 flex flex-col items-center justify-center md:h-1/2 h-1/3">
             <div className="flex flex-col items-center pointer-events-none relative">
               <div
                 className="flex flex-col items-center pointer-events-none z-20"
@@ -185,7 +183,7 @@ const Hero = () => {
                   maskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 50%)`,
                 }}
               >
-                <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-custom-color league-spartan font-extralight whitespace-pre pointer-events-none big-text-gsap">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-custom-color league-spartan font-extralight whitespace-pre pointer-events-none mb-10 big-text-gsap">
                   {"  "}A S H U T O S H{"    "} D A H A L
                 </h3>
                 <p className="text-xs sm:text-sm md:text-lg lg:text-2xl  my-2 sm:my-6 league-spartan font-extralight whitespace-pre xs-scale-reduce-for-text text-custom-color mx-5 px-5 sm:px-0 sm:mx-auto pointer-events-none small-text-gsap">
@@ -199,7 +197,7 @@ const Hero = () => {
                 className="flex flex-col items-center pointer-events-none absolute "
                 id="green-text-overlay"
               >
-                <h3 className="text-2xl sm:text-3xl  text-custom-color-green md:text-5xl lg:text-6xl text-custom-color league-spartan font-extralight whitespace-pre pointer-events-none big-text-gsap">
+                <h3 className="text-2xl sm:text-3xl  text-custom-color-green md:text-5xl lg:text-6xl text-custom-color league-spartan font-extralight whitespace-pre pointer-events-none mb-10 big-text-gsap">
                   {"  "}A S H U T O S H{"    "} D A H A L
                 </h3>
                 <p className="text-xs sm:text-sm md:text-lg text-custom-color-green lg:text-2xl  my-2 sm:my-6 league-spartan font-extralight whitespace-pre xs-scale-reduce-for-text text-custom-color mx-5 px-5 sm:px-0 sm:mx-auto pointer-events-none small-text-gsap">
@@ -209,7 +207,7 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-[90%] sm:w-full relative">
+            {/* <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-[90%] sm:w-full relative">
               <Link to="/feats-and-projects" className="self-start">
                 <div className="self-start  relative transition-all duration-300 flex hover:scale-110 cursor-pointer my-5">
                   <button
@@ -245,7 +243,7 @@ const Hero = () => {
                   </button>
                 </div>
               </ScrollLink>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -253,7 +251,7 @@ const Hero = () => {
   );
 };
 
-const AboutMe = ({windowWidth}) => {
+const AboutMe = ({ windowWidth }) => {
   useEffect(() => {
     const aboutMeTextRef = document.querySelector(".about-me-text");
     let imageContainerGsap = document
@@ -410,7 +408,7 @@ const Education = () => {
   );
 };
 
-const Skills = ({windowWidth}) => {
+const Skills = ({ windowWidth }) => {
   useEffect(() => {
     const canvasEl = document.querySelector("#canvas-bubbles");
     const ctx = canvasEl.getContext("2d");
@@ -507,24 +505,12 @@ const Skills = ({windowWidth}) => {
     );
 
     const skillsContainerRectGsap = skillsContainerGsap.getBoundingClientRect();
-    const imageContainerGsapRect = document
-      .querySelector(".image-container-gsap")
-      .getBoundingClientRect();
+
     const skillsAllAnimationGsap = gsap
       .matchMedia()
       .add("(min-width: 1024px)", () => {
         const iconMoveTimeline = gsap
           .timeline({ paused: true })
-          .set(topIconBox, {
-            x: imageContainerGsapRect.left + imageContainerGsapRect.width / 2,
-            y: imageContainerGsapRect.top + imageContainerGsapRect.height / 2,
-            xPercent: -50,
-            yPercent: -50,
-            transformOrigin: "50% 50%",
-            // scale: 10,
-            rotate: 360,
-            duration: 0,
-          })
 
           .to(topIconBox, {
             duration: 1,
