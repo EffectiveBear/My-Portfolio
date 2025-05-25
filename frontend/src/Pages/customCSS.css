@@ -53,8 +53,8 @@
   background: #f2f2f2;
   background: linear-gradient(
     135deg,
-    #fdeec7b8 0%,
-    #ddf0e3 30%,
+    rgba(234, 127, 244, 0.316) 0%,
+    #ddedf0 50%,
     rgba(234, 127, 244, 0.562) 100%
   );
 }

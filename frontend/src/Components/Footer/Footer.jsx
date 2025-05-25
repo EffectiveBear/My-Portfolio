@@ -23,7 +23,7 @@ const Footer = () => {
     window.addEventListener("resize", resizeCaste);
   }, []);
   return (
-    <footer className="footer">
+    <footer className="footer ">
       <div className="footer-left">
         <img src={footer_icon} alt="icon" />
         <span className="trueName titillium-web text-amber-50">
@@ -44,26 +44,26 @@ const Footer = () => {
               href="https://www.facebook.com/profile.php?id=100090923439538"
               target="_blank"
             >
-              <FaFacebook className="text-blue-600 border-2 border-green-200 rounded-full scale-160 mx-6 bg-white transition-transform hover:scale-180" />
+              <FaFacebook className="text-blue-600 border-2 border-green-200 rounded-full scale-120 md:scale-160 mx-1 sm:mx-3 m md:mx-6 bg-white transition-transform hover:scale-180" />
             </a>
           </li>
-          <li>
+          <li >
             <a href="https://www.instagram.com/ashutosh.dahal/" target="_blank">
-              <RiInstagramFill className="text-rose-400 border-2 border-green-200 rounded-full scale-160 mx-6 bg-white transition-transform hover:scale-180" />
+              <RiInstagramFill className="text-rose-400 border-2 border-green-200 rounded-full scale-120 md:scale-160 mx-1 sm:mx-3 m md:mx-6 bg-white transition-transform hover:scale-180" />
             </a>
           </li>
-          <li>
+          <li >
             <a href="https://github.com/EffectiveBear" target="_blank">
               {" "}
-              <FaGithub className="text-black border-2 border-green-200 rounded-full scale-160 mx-6 bg-white transition-transform hover:scale-180" />
+              <FaGithub className="text-black border-2 border-green-200 rounded-full scale-120 md:scale-160 mx-1 sm:mx-3  md:mx-6 bg-white transition-transform hover:scale-180" />
             </a>
           </li>
-          <li>
+          <li >
             <a
               href="https://www.linkedin.com/in/ashutosh-dahal-3a3a5b273/"
               target="_blank"
             >
-              <FaLinkedin className="text-blue-600 border-2 border-green-200 rounded-full scale-160 mx-6 bg-white transition-transform hover:scale-180" />
+              <FaLinkedin className="text-blue-600 border-2 border-green-200 rounded-full scale-100 sm:scale-120 md:scale-160 mx-2 sm:mx-3  md:mx-6 bg-white transition-transform hover:scale-130 md:hover:scale-180" />
             </a>
           </li>
         </ul>

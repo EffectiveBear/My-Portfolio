@@ -49,8 +49,8 @@ const Hero = () => {
   const handleMouseMoveForOverlayEffect = (event) => {
     const imageOverlay = document.querySelector("#bright-image-overlay");
     const textOverlay = document.querySelector("#bright-text-overlay");
-    const buttonOverlay1 = document.querySelectorAll(".bright-btn-overlay")[0];
-    const buttonOverlay2 = document.querySelectorAll(".bright-btn-overlay")[1];
+    // const buttonOverlay1 = document.querySelectorAll(".bright-btn-overlay")[0];
+    // const buttonOverlay2 = document.querySelectorAll(".bright-btn-overlay")[1];
 
     const overlayFunction = (DomSelector, event) => {
       const elementRect = DomSelector.getBoundingClientRect();
@@ -89,8 +89,8 @@ const Hero = () => {
 
         overlayFunction(imageOverlay, event); //image-overlay
         overlayFunction(textOverlay, event); //text-overlay
-        overlayFunction(buttonOverlay1, event);
-        overlayFunction(buttonOverlay2, event);
+        // overlayFunction(buttonOverlay1, event);
+        // overlayFunction(buttonOverlay2, event);
       }
     });
   };
@@ -122,30 +122,30 @@ const Hero = () => {
         { x: 20, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.3 }
       )
-      .fromTo(
-        ".hero-button-animation-gsap-left",
-        {
-          y: -75,
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-        }
-      )
-      .fromTo(
-        ".hero-button-animation-gsap-right",
-        {
-          y: 75,
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-        }
-      );
+      // .fromTo(
+      //   ".hero-button-animation-gsap-left",
+      //   {
+      //     y: -75,
+      //     opacity: 0,
+      //   },
+      //   {
+      //     opacity: 1,
+      //     y: 0,
+      //     duration: 0.4,
+      //   }
+      // )
+      // .fromTo(
+      //   ".hero-button-animation-gsap-right",
+      //   {
+      //     y: 75,
+      //     opacity: 0,
+      //   },
+      //   {
+      //     opacity: 1,
+      //     y: 0,
+      //     duration: 0.4,
+      //   }
+      // );
   }, []);
 
   return (
@@ -197,10 +197,10 @@ const Hero = () => {
                 className="flex flex-col items-center pointer-events-none absolute "
                 id="green-text-overlay"
               >
-                <h3 className="text-2xl sm:text-3xl  text-custom-color-green md:text-5xl lg:text-6xl text-custom-color league-spartan font-extralight whitespace-pre pointer-events-none mb-10 big-text-gsap">
+                <h3 className="text-2xl sm:text-3xl  text-custom-color-green md:text-5xl lg:text-6xl text-white league-spartan font-extralight whitespace-pre pointer-events-none mb-10 big-text-gsap">
                   {"  "}A S H U T O S H{"    "} D A H A L
                 </h3>
-                <p className="text-xs sm:text-sm md:text-lg text-custom-color-green lg:text-2xl  my-2 sm:my-6 league-spartan font-extralight whitespace-pre xs-scale-reduce-for-text text-custom-color mx-5 px-5 sm:px-0 sm:mx-auto pointer-events-none small-text-gsap">
+                <p className="text-xs sm:text-sm md:text-lg text-white lg:text-2xl  my-2 sm:my-6 league-spartan font-extralight whitespace-pre xs-scale-reduce-for-text  mx-5 px-5 sm:px-0 sm:mx-auto pointer-events-none small-text-gsap">
                   "{"  "}E X C I T E D{"      "}T O{"      "}L E A R N ,
                   {"      "}E N T H U S I A S T I C{"      "}T O{"      "}B U I
                   L D "

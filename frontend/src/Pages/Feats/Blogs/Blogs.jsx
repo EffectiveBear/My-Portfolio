@@ -71,13 +71,13 @@ const Memories = () => {
 function Memory(props) {
   {
     return (
-      <div className="memory shadow-md py-8 max-h-[50vh]:">
+      <div className="memory shadow-md py-8 h-fit z-100">
         <div className="memory-image">
           <img src={props.image} alt="no" className="cursor-pointer" />
         </div>
-        <div className="memories-details titillium-web ">
-          <h4 className="league-spartan text-4xl mb-8 sm:text-3xl">{props.heading}</h4>
-          <p className="titillium-web">{props.description}</p>
+        <div className="memories-details titillium-web z-10">
+          <h4 className="league-spartan text-4xl mb-8 sm:text-3xl z-10">{props.heading}</h4>
+          <p className="titillium-web z-10">{props.description}</p>
         </div>
       </div>
     );

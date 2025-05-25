@@ -1,6 +1,6 @@
 .memories
 {
-    width: 90%;
+    min-width: 90%;
     margin:50px auto;
     margin-top: 60px;
 }
@@ -70,7 +70,7 @@
         font-size: 12px;
     }
     .memory-image {
-        height: 40vh;
+        max-height: 40vh;
     }
     .memory-image img {
         height: 100%;
@@ -84,6 +84,7 @@
     .memory-image{
 
         height:25vh;
+        margin-bottom: 40px;
     }
     .memory-image img{
         width: 40vw;
@@ -104,5 +105,10 @@
         width: 50vw;
         height:20vh;
         margin-bottom: 30px;
+    }
+    .memory-image{
+
+        height:25vh;
+        /* margin-bottom: 20px; */
     }
 }
