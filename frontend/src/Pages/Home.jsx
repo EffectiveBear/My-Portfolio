@@ -352,7 +352,7 @@ const AboutMe = ({ windowWidth }) => {
         </div>
         <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10 relative">
           <div
-            className="rounded-full w-[21vw] overflow-hidden absolute z-[99] justify-start items-center lg:hidden flex  border-[16px] border-amber-50 "
+            className="rounded-full w-[40vw] overflow-hidden  z-[99] justify-start items-center lg:hidden flex  border-4 border-amber-50 "
             id="about-moving-icon-to-skills"
           >
             <img
@@ -610,7 +610,7 @@ const Skills = ({ windowWidth }) => {
           {/* This div is for floating image */}
           <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap `">
             {/* {windowWidth < 1024 && ( */}
-              <div className="image-container-gsap absolute top-0 left-0 z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
+              <div className="image-container-gsap  z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
                 <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
                   <img
                     src={myTreatIconPhoto}
