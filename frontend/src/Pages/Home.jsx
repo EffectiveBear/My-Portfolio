@@ -4,29 +4,27 @@ import backgroundImageInHome2 from "../assets/home-bg.jpg";
 import { gsap } from "gsap";
 import "./customCSS.css";
 import Typed from "typed.js";
-import { Link as ScrollLink } from "react-scroll";
+// import { Link as ScrollLink } from "react-scroll";
 import EducationImported from "./Education/Education";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import myImageIcon from "../assets/my-icon.jpg";
 import myTreatIconPhoto from "../assets/my-treat-photo.jpg";
 import myEngineerIconPhoto from "../assets/my-engineer-photo.jpg";
 import { Link } from "react-router-dom";
+import allIconAnimations from "../helpers/top-icon-move";
 
 const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
+    allIconAnimations();
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
-      // window.scrollTo(0, 0);
-      // location.reload();
     });
     return () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth);
-        // window.scrollTo(0, 0);
-        // location.reload();
       });
     };
   }, []);
@@ -255,30 +253,30 @@ const AboutMe = ({ windowWidth }) => {
   useEffect(() => {
     const aboutMeTextRef = document.querySelector(".about-me-text");
     let imageContainerGsap = document
-      .querySelector(".image-container-gsap")
+      .querySelector(".about-image-container-gsap")
       .getBoundingClientRect();
     const topIconBox = document.querySelector("#top-moving-photo-icon");
     const iconBoxPhoto = topIconBox.querySelector("img");
     const aboutMeAllAnimationsGsap = gsap.matchMedia();
 
     aboutMeAllAnimationsGsap.add("(min-width: 1024px)", () => {
-      const iconMoveTimeline = gsap.timeline({ paused: true }).to(topIconBox, {
-        x: imageContainerGsap.left + imageContainerGsap.width / 2,
-        y: imageContainerGsap.top + imageContainerGsap.height / 2,
-        xPercent: -50,
-        yPercent: -50,
-        transformOrigin: "50% 50%",
-        scale: 10,
-        rotate: 360,
-        border: "2px solid #ddf0e3",
-        duration: 0.6,
-        onStart: () => {
-          iconBoxPhoto.src = myEngineerIconPhoto;
-        },
-        onReverseComplete: () => {
-          iconBoxPhoto.src = myImageIcon;
-        },
-      });
+      // const iconMoveTimeline = gsap.timeline({ paused: true }).to(topIconBox, {
+      //   x: imageContainerGsap.left + imageContainerGsap.width / 2,
+      //   y: imageContainerGsap.top + imageContainerGsap.height / 2,
+      //   xPercent: -50,
+      //   yPercent: -50,
+      //   transformOrigin: "50% 50%",
+      //   scale: 10,
+      //   rotate: 360,
+      //   border: "2px solid #ddf0e3",
+      //   duration: 0.6,
+      //   onStart: () => {
+      //     iconBoxPhoto.src = myEngineerIconPhoto;
+      //   },
+      //   onReverseComplete: () => {
+      //     iconBoxPhoto.src = myImageIcon;
+      //   },
+      // });
 
       const borderCurveTimeline = gsap
         .timeline({ paused: true })
@@ -296,14 +294,14 @@ const AboutMe = ({ windowWidth }) => {
         );
 
       ScrollTrigger.create({
-        trigger: ".image-container-gsap",
+        trigger: ".about-image-container-gsap",
         start: "top 60%",
         onEnter: async () => {
-          await iconMoveTimeline.play();
+          // await iconMoveTimeline.play();
           borderCurveTimeline.play();
         },
         onLeaveBack: () => {
-          iconMoveTimeline.progress(1).reverse();
+          // iconMoveTimeline.progress(1).reverse();
           borderCurveTimeline.reverse();
         },
       });
@@ -350,7 +348,7 @@ const AboutMe = ({ windowWidth }) => {
             </p>
           </div>
         </div>
-        <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10 relative">
+        <div className="about-image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10 relative">
           <div
             className="rounded-full w-[40vw] overflow-hidden  z-[99] justify-start items-center lg:hidden flex  border-4 border-amber-50 "
             id="about-moving-icon-to-skills"
@@ -502,9 +500,7 @@ const Skills = ({ windowWidth }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const topIconBox = document.querySelector(
-      "#top-moving-photo-icon"
-    );
+    const topIconBox = document.querySelector("#top-moving-photo-icon");
     const iconBoxPhoto = topIconBox.querySelector("img");
     const skillsBigContainerGsap = document.querySelector(
       ".skills-big-container-gsap"
@@ -521,25 +517,25 @@ const Skills = ({ windowWidth }) => {
         const iconMoveTimeline = gsap
           .timeline({ paused: true })
 
-          .to(topIconBox, {
-            duration: 1,
-            x: skillsContainerRectGsap.left + skillsContainerRectGsap.width / 2,
-            y: skillsContainerRectGsap.top + skillsContainerRectGsap.height / 2,
+          // .to(topIconBox, {
+          //   duration: 1,
+          //   x: skillsContainerRectGsap.left + skillsContainerRectGsap.width / 2,
+          //   y: skillsContainerRectGsap.top + skillsContainerRectGsap.height / 2,
 
-            xPercent: -50,
-            yPercent: -50,
-            border: "2.5px solid #4e73dc",
-            scale: 10,
-            opacity:1,
-            rotate: 0,
-            ease: "circ.inOut",
-            onStart: () => {
-              iconBoxPhoto.src = myTreatIconPhoto;
-            },
-            onReverseComplete: () => {
-              iconBoxPhoto.src = myEngineerIconPhoto;
-            },
-          })
+          //   xPercent: -50,
+          //   yPercent: -50,
+          //   border: "2.5px solid #4e73dc",
+          //   scale: 10,
+          //   opacity: 1,
+          //   rotate: 0,
+          //   ease: "circ.inOut",
+          //   onStart: () => {
+          //     iconBoxPhoto.src = myTreatIconPhoto;
+          //   },
+          //   onReverseComplete: () => {
+          //     iconBoxPhoto.src = myEngineerIconPhoto;
+          //   },
+          // })
           .to(
             ".skills-big-container-gsap",
             {
@@ -609,17 +605,15 @@ const Skills = ({ windowWidth }) => {
         <div className="flex min-h-[50vh] justify-center items-center w-[90vw] flex-col lg:flex-row my-5">
           {/* This div is for floating image */}
           <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap `">
-            {/* {windowWidth < 1024 && ( */}
-              <div className="image-container-gsap  z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-                <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
-                  <img
-                    src={myTreatIconPhoto}
-                    alt="my image"
-                    className="scale-110 object-cover "
-                  />
-                </div>
+            <div className="skill-image-container-gsap  z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
+              <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
+                <img
+                  src={myTreatIconPhoto}
+                  alt="my image"
+                  className="scale-110 object-cover "
+                />
               </div>
-            {/* )} */}
+            </div>
           </div>
           <div className=" min-w-1/2 min-h-[90%] flex flex-col justify-start items-center my-8 ">
             <h3

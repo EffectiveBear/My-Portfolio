@@ -133,15 +133,15 @@ const Navbar = () => {
       style={{ backgroundColor: "#f3eeee9c" }}
     >
       {/* this will be the image that will travel */}
-      <div className="flex md:justify-start items-center  h-[55px] self-start m-auto md:mx-4 ">
+      <div className="flex md:justify-start items-center  h-[55px] self-start m-auto md:mx-4 relative">
         {/* just for error handling  */}
         <div
           id="top-moving-photo-original-position"
-          className="self-center"
+          className="absolute top-0 -z-10"
         ></div>
         <div
           id="top-moving-photo-icon"
-          className="rounded-full w-8 h-8 overflow-hidden border-3 z-[9999] mr-10  md:mx-4  hidden md:block"
+          className="rounded-full w-8 h-8 overflow-hidden border-3 z-[9999] mr-5 md:mx-4 "
         >
           <img
             src={myImageIcon}
