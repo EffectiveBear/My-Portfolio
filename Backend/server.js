@@ -10,7 +10,6 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors({
     // origin: "https://ashutosh-dahal.netlify.app",
-    allowedHeaders: ["content-type", "vaultCategory"]
 }))
 app.use("/api", require("./Routes/userRoutes"));
 
