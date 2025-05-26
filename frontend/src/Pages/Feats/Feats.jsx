@@ -12,8 +12,8 @@ const Feats = () => {
 
     canvas.width = rect.width;
     canvas.height = rect.height;
-    const max_radius = 50;
-    const min_radius = 30;
+    const max_radius = 30;
+    const min_radius = 15;
 
     const circles = Array.from(
       { length: (canvas.width * canvas.height) / (300 * 300) },
