@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSwipeable } from "react-swipeable";
 import ContactImport from "../Pages/Contact/Contact";
 import { Toaster } from "react-hot-toast";
 
@@ -25,9 +24,8 @@ const Contact = () => {
       background: `linear-gradient(
     135deg,
     rgb(242, 242, 242) 0%,
-    #ddf0e3 52%,
-    #d9d9bd 78%,
-    #eae4d58a 100%
+    #ddf0e3 100%
+    
   )`,
       duration: 1,
     });

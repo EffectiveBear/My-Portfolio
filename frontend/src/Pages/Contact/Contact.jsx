@@ -37,7 +37,7 @@ const Contact = ({ scrollId }) => {
       }
     } catch (error) {
       // console.error("Oops! Something went wrong!\nReason:-", error.message);
-      toast.success("Form submitted successfully..!");
+      toast.error("Internal Server Error..!");
     }
   };
 
