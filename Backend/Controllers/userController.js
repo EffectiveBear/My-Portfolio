@@ -1,4 +1,3 @@
-const mongoose = require("mongoose")
 const contactMe = async (req, res) => {
     if (!req.body) {
         res.status(400).json({ message: "Something went wrong" });
