@@ -6,6 +6,8 @@ import "./customCss.css";
 
 const Navbar = () => {
   const location = useLocation();
+  // const handleMisplacing
+
   useEffect(() => {
     gsap.matchMedia().add("(min-width: 768px)", () => {
       gsap
@@ -116,17 +118,29 @@ const Navbar = () => {
         );
     });
   }, []);
-  // useEffect(() => {
-  //   if (location.pathname !== "/") {
-  //     gsap.to("#top-moving-photo-icon", {
-  //       x: 0,
-  //       y: 0,
-  //       scale: "",
-  //       rotate: "",
-  //       duration: 0,
-  //     });
-  //   }
-  // }, [location.pathname]);
+  useEffect(() => {
+    const originalContainerRectGsap = document
+      .querySelector("#top-moving-photo-original-position")
+      .getBoundingClientRect();
+    //ICON Boxes
+    const topIconBox = document.querySelector("#top-moving-photo-icon");
+    const iconBoxPhoto = topIconBox.querySelector("img");
+
+    gsap.to("#top-moving-photo-icon", {
+      x: originalContainerRectGsap.left,
+      y: originalContainerRectGsap.top,
+      xPercent: -50,
+      yPercent: 0,
+      transformOrigin: "50% 50%",
+      scale: 1,
+      rotate: 0,
+      border: "2.8px solid black",
+      duration: 0.01,
+      onStart: () => {
+        iconBoxPhoto.src = myImageIcon;
+      },
+    });
+  }, [location.pathname]);
   return (
     <nav
       className="flex justify-between items-center bg-custom-color flex-col md:flex-row md:justify-between md:items-center shadow-xl relative"
@@ -141,7 +155,7 @@ const Navbar = () => {
         ></div>
         <div
           id="top-moving-photo-icon"
-          className="rounded-full w-8 h-8 overflow-hidden border-3 z-[9999] mr-5 md:mx-4 "
+          className="rounded-full w-8 h-8 overflow-hidden border-3 z-[9999] mr-10 sm:mr-5 md:mx-4 "
         >
           <img
             src={myImageIcon}
@@ -166,7 +180,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="mx-20 my-2">
-        <ul className="flex justify-center items-center xs-gap-reduce gap-10 sm:gap-20 md:gap-15">
+        <ul className="flex justify-center items-center xs-gap-reduce gap-10 sm:gap-20 md:gap-15 mr-3">
           {/*this is to compensate for the stagger effect..it staggger onnly for other not for this*/}
           <li className="hidden gsap-updown-custom-animate"></li>{" "}
           <Link to="/">

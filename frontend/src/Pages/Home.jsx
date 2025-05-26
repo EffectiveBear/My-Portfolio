@@ -1,6 +1,7 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import backgroundImageInHome from "../assets/home-bg-1.jpg";
 import backgroundImageInHome2 from "../assets/home-bg.jpg";
+import CIcon from "../assets/C-icon.png";
 import { gsap } from "gsap";
 import "./customCSS.css";
 import Typed from "typed.js";
@@ -10,8 +11,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import myImageIcon from "../assets/my-icon.jpg";
 import myTreatIconPhoto from "../assets/my-treat-photo.jpg";
 import myEngineerIconPhoto from "../assets/my-engineer-photo.jpg";
-import { Link } from "react-router-dom";
 import allIconAnimations from "../helpers/top-icon-move";
+import { FaReact } from "react-icons/fa";
+import { FaJsSquare } from "react-icons/fa";
+import { FaPython } from "react-icons/fa";
+import { SiAutocad } from "react-icons/si";
+import { MdEventAvailable } from "react-icons/md";
+import { FaMusic } from "react-icons/fa";
+import { TbCliffJumping } from "react-icons/tb";
+import { Link as ScrollLink } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -26,6 +35,7 @@ const Home = () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth);
       });
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -47,8 +57,8 @@ const Hero = () => {
   const handleMouseMoveForOverlayEffect = (event) => {
     const imageOverlay = document.querySelector("#bright-image-overlay");
     const textOverlay = document.querySelector("#bright-text-overlay");
-    // const buttonOverlay1 = document.querySelectorAll(".bright-btn-overlay")[0];
-    // const buttonOverlay2 = document.querySelectorAll(".bright-btn-overlay")[1];
+    const buttonOverlay1 = document.querySelectorAll(".bright-btn-overlay")[0];
+    const buttonOverlay2 = document.querySelectorAll(".bright-btn-overlay")[1];
 
     const overlayFunction = (DomSelector, event) => {
       const elementRect = DomSelector.getBoundingClientRect();
@@ -87,8 +97,8 @@ const Hero = () => {
 
         overlayFunction(imageOverlay, event); //image-overlay
         overlayFunction(textOverlay, event); //text-overlay
-        // overlayFunction(buttonOverlay1, event);
-        // overlayFunction(buttonOverlay2, event);
+        overlayFunction(buttonOverlay1, event);
+        overlayFunction(buttonOverlay2, event);
       }
     });
   };
@@ -105,45 +115,45 @@ const Hero = () => {
 
     gsap
       .timeline()
-      .from(".big-text-gsap", {
-        x: -20,
-        opacity: 0,
-        duration: 1,
-      })
+      // .from(".big-text-gsap", {
+      //   x: -50,
+      //   opacity: 0,
+      //   duration: 1,
+      // })
       .fromTo(
         ".big-text-gsap",
-        { x: -20, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.3 }
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.3, delay: 1 }
       )
       .fromTo(
         ".small-text-gsap",
         { x: 20, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.3 }
+      )
+      .fromTo(
+        ".hero-button-animation-gsap-left",
+        {
+          y: -75,
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+        }
+      )
+      .fromTo(
+        ".hero-button-animation-gsap-right",
+        {
+          y: 75,
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+        }
       );
-    // .fromTo(
-    //   ".hero-button-animation-gsap-left",
-    //   {
-    //     y: -75,
-    //     opacity: 0,
-    //   },
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     duration: 0.4,
-    //   }
-    // )
-    // .fromTo(
-    //   ".hero-button-animation-gsap-right",
-    //   {
-    //     y: 75,
-    //     opacity: 0,
-    //   },
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     duration: 0.4,
-    //   }
-    // );
   }, []);
 
   return (
@@ -205,22 +215,20 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            {/* <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-[90%] sm:w-full relative">
-              <Link to="/feats-and-projects" className="self-start">
-                <div className="self-start  relative transition-all duration-300 flex hover:scale-110 cursor-pointer my-5">
-                  <button
-                    className="bright-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left w-fit z-10 sm:px-7 sm:py-3 py-3  px-3  border-3 rounded-lg titillium-web font-light"
-                    style={{
-                      maskImage: `linear-gradient(to right, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%)`,
-                    }}
-                  >
-                    See my Feats
-                  </button>
-                  <button className="dark-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left absolute w-fit z-9 sm:px-7 sm:py-3 py-3  px-3 border-3 rounded-lg border-green-400 text-green-400 titillium-web font-light ">
-                    See my Feats
-                  </button>
-                </div>
-              </Link>
+            <div className="text-white text-2xl flex flex-col justify-between  md:h-1/3 h-fit  items-center w-[90%] sm:w-full relative">
+              <div className="self-start  relative transition-all duration-300 flex hover:scale-110 cursor-pointer my-5">
+                <button
+                  className="bright-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left w-fit z-10 font-extrabold sm:px-7 sm:py-3 py-3 font-extrabold px-3  bg-green-600/80 text-gray-50  rounded-lg titillium-web font-light"
+                  style={{
+                    maskImage: `linear-gradient(to right, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%)`,
+                  }}
+                >
+                  <a href="https://github.com/EffectiveBear" target="_blank">Visit my Github</a>
+                </button>
+                <button className="dark-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left absolute w-fit font-extrabold z-9 sm:px-7 sm:py-3 py-3  px-3  rounded-lg text-gray-800 bg-gray-100 titillium-web font-light ">
+                  <a href="https://github.com/EffectiveBear" target="_blank">Visit my Github</a>
+                </button>
+              </div>
               <ScrollLink
                 to="about-me-scroll-link"
                 smooth={true}
@@ -229,19 +237,19 @@ const Hero = () => {
               >
                 <div className="self-end  relative transition-all duration-300 flex hover:scale-110 cursor-pointer my-5 ">
                   <button
-                    className="bright-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-right w-fit z-10 sm:px-7 sm:py-3 py-3  px-3 border-3 rounded-lg titillium-web font-light"
+                    className="bright-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-right w-fit z-10 sm:px-7 sm:py-3 py-3  px-3 bg-green-600/80 text-gray-50 rounded-lg titillium-web font-light"
                     style={{
                       maskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%)`,
                     }}
                   >
                     Learn about me
                   </button>
-                  <button className="dark-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-right absolute w-fit z-9 sm:px-7 sm:py-3 py-3  px-3 border-3 rounded-lg border-green-400 text-green-400 titillium-web font-light">
+                  <button className="dark-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-right absolute w-fit z-9 sm:px-7 sm:py-3 py-3  px-3 text-gray-800 bg-gray-100 rounded-lg titillium-web font-light">
                     Learn about me
                   </button>
                 </div>
               </ScrollLink>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
@@ -281,8 +289,9 @@ const AboutMe = ({ windowWidth }) => {
       const borderCurveTimeline = gsap
         .timeline({ paused: true })
         .to(".about-me-big-container-gsap", {
-          borderBottomRightRadius: "30%",
-          duration: 1,
+          borderBottomRightRadius: "35%",
+          duration: 1.2,
+          delay: 0.6,
         })
         .to(
           iconBoxPhoto,
@@ -317,7 +326,7 @@ const AboutMe = ({ windowWidth }) => {
       ) {
         new Typed(aboutMeTextRef, {
           strings: [
-            "I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation.",
+            `Hey, it’s me Ashutosh Dahal from Kankai-4, Jhapa currently in my 3rd year of Civil Engineering at IOE Pulchowk. I love figuring out how stuff works—buildings, tech, whatever. When I’m not hitting the books, you’ll find me coding, jamming to music(guitar/flute), or dancing. I’m all about keeping things simple, creative, and real—whether that’s in code, concrete, or just talking (Jhapali’s forte).  And yeah, I love Tea and gaming too!`,
           ],
           typeSpeed: 1,
           backSpeed: 0,
@@ -338,13 +347,13 @@ const AboutMe = ({ windowWidth }) => {
     <div className="flex justify-center items-center bg-gradient-custom-about-me about-me-scroll-link about-me-big-container-gsap">
       <div className="w-[95vw] sm:w-[80vw] min-h-[40vh] lg:h-[70vh] xl:h-[80vh] flex  flex-col-reverse lg:flex-row justify-between  lg:mt-auto ">
         <div className="text-box basis-3/5  h-3/5 sm:h-full flex justify-center items-center">
-          <div className="my-6 mt-1 flex flex-col justify-center items-center">
+          <div className="my-6 mt-1 min-h-full flex flex-col justify-center items-center">
             <h3 className="underline underline-offset-8 text-3xl titillium-web sm:my-10 my-3 ml-4 self-start">
               ABOUT ME
             </h3>
             <p className="whitespace-pre-wrap text-left sm:text-lg text-md px-4 self-start overflow-visible max-w-[900px] about-me-text">
               {windowWidth < 1024 &&
-                `"I'm Ashutosh Dahal, a 3rd year Civil Engineering student at IOE Pulchowk Campus. I'm interested in how things work—whether it's structures in the real world or systems in the digital one. Alongside my engineering studies, I enjoy learning about design, development, and building things that are both useful and thoughtful. Lately, I've been exploring web development and finding ways to bring ideas to life online. I value clarity, curiosity, and good design:- whether in code, concrete, or conversation."`}
+                `Hey, it’s me Ashutosh Dahal from Kankai-4, Jhapa currently in my 3rd year of Civil Engineering at IOE Pulchowk. I love figuring out how stuff works—buildings, tech, whatever. When I’m not hitting the books, you’ll find me coding, jamming to music(guitar/flute), or dancing stuff. I’m all about keeping things simple, creative, and real—whether that’s in code, concrete, or just talking (Jhapali’s forte). And yeah, I love Tea and gaming too!`}
             </p>
           </div>
         </div>
@@ -422,19 +431,19 @@ const Skills = ({ windowWidth }) => {
     canvasEl.height = containerRect.height;
 
     const max_radius = 20;
-    const min_radius = 8;
+    const min_radius = 10;
     const circleCount = Math.abs(
       canvasEl.width > canvasEl.height
         ? canvasEl.width / 80
-        : canvasEl.height / 60
+        : canvasEl.height / 80
     );
 
     const circles = Array.from({ length: circleCount }, () => ({
       x: Math.random() * canvasEl.width,
       y: Math.random() * canvasEl.height,
       radius: Math.random() * max_radius + min_radius,
-      dx: (Math.random() - 0.5) * 4,
-      dy: (Math.random() - 0.5) * 4,
+      dx: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 4 : 2),
+      dy: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 4 : 2),
       color: `hsl(${Math.random() * 360}, 100%, 50%)`,
     }));
 
@@ -560,13 +569,13 @@ const Skills = ({ windowWidth }) => {
             "<"
           )
           .set(".skills-list-animation-gsap", {
-            x: 100,
+            y: (i) => 100 - (100 * i) / 10,
             opacity: 0,
           })
           .to(".skills-list-animation-gsap", {
             duration: 0.75,
             stagger: 0.05,
-            x: 0,
+            y: 0,
             opacity: 1,
             // ease: "bounce.inOut",
           });
@@ -606,7 +615,7 @@ const Skills = ({ windowWidth }) => {
           {/* This div is for floating image */}
           <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap `">
             <div className="skill-image-container-gsap  z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-              <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
+              <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-[28px] border-blue-700">
                 <img
                   src={myTreatIconPhoto}
                   alt="my image"
@@ -624,21 +633,68 @@ const Skills = ({ windowWidth }) => {
             </h3>
             <div className="lg:flex lg:flex-col lg:gap-1 w-3/4 justify-start grid grid-cols-2 gap-3">
               {[
-                "C/C++",
-                "React",
-                "Express",
-                "Python",
-                "AutoCAD",
-                "Event Management",
-                "Guitar/Flute",
-                "Dancing",
+                {
+                  skill: "C/C++",
+                  icon: (
+                    <>
+                      <img
+                        src={CIcon}
+                        alt=""
+                        className="w-8 h-8 rounded-full mx-2"
+                      />
+                    </>
+                  ),
+                },
+                {
+                  skill: "React",
+                  icon: (
+                    <FaReact className="w-fit h-fit text-blue-700 mx-2 font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "Node/Express",
+                  icon: (
+                    <FaJsSquare className="w-fit h-fit text-black mx-2  font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "Python",
+                  icon: (
+                    <FaPython className="w-fit h-fit text-blue-700 mx-2 font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "AutoCAD/Civil3D",
+                  icon: (
+                    <SiAutocad className="w-fit h-fit text-green-700 mx-2 font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "Event Management",
+                  icon: (
+                    <MdEventAvailable className="w-fit h-fit text-gray-600 mx-2 font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "Guitar/flute",
+                  icon: (
+                    <FaMusic className="w-fit h-fit text-black mx-2 font-extrabold " />
+                  ),
+                },
+                {
+                  skill: "Dancing",
+                  icon: (
+                    <TbCliffJumping className="w-fit h-fit text-gray-600 mx-2 font-extrabold " />
+                  ),
+                },
               ].map((skill, key) => {
                 return (
                   <div
                     key={key}
-                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex justify-center lg:block z-1`}
+                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex flex-row justify-start z-1`}
                   >
-                    {skill}
+                    {skill.icon}
+                    {skill.skill}
                   </div>
                 );
               })}

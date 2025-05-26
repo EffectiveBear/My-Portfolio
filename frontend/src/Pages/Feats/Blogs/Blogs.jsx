@@ -29,15 +29,15 @@ const Memories = () => {
     <div className="container flex justify-center items-center">
       <div className="memories w-[95%]">
         <Memory
-          image={class10Topperphoto}
-          heading="Topper of Kanakai municipality(2079) - NEB 2079"
-          description="I have secured 1st position in the NEB 2079 +2 exams, becoming the topper of Kanakai Municipality with an outstanding 3.76 GPA. In acknowledgment of my accomplishment, the Mayor presented me with distinguished awards, marking my success with honor and celebration."
-        />
-        <Memory
           image={class12Topperphoto}
           heading="Top 100 in IOE Entrance Examination - IOE 2079"
           description="I have secured Rank 73 in the IOE Entrance Examination (IOE 2079), earning a full scholarship to pursue civil engineering. This achievement marks a significant milestone in my academic journey, opening doors to an exciting future in engineering. 
 "
+        />
+        <Memory
+          image={class10Topperphoto}
+          heading="Topper of Kanakai municipality(2079) - NEB 2079"
+          description="I have secured 1st position in the NEB 2079 +2 exams, becoming the topper of Kanakai Municipality with an outstanding 3.76 GPA. In acknowledgment of my accomplishment, the Mayor presented me with distinguished awards, marking my success with honor and celebration."
         />
         <Memory
           image={bestFlashmobphoto}

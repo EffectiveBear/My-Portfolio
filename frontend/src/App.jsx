@@ -7,6 +7,8 @@ import Feats from "./Pages/Feats/Feats";
 import Footer from "./Components/Footer/Footer"
 import gsap from "gsap";
 
+
+
 const App = () => {
   return (
     <>
@@ -27,6 +29,11 @@ const AnimatedRoutes = () => {
   const PAGE_TRANSITION_NUMBER = 30;
   const PAGE_TRANSITION_DURATION = 0.5;
   useEffect(() => {
+    if(prevLocation == null)
+    {
+      setPrevLocation(location.pathname);
+      return;
+    }
     if (prevLocation == null && location.pathname == "/") {
       setPrevLocation(location.pathname);
       return;
