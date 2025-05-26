@@ -159,15 +159,12 @@ const allIconAnimations = () => {
       start: "top 60%",
       onEnter: () => {
         iconMoveToAboutFromOriginalTimeline.restart();
-        console.log("Moved to about ");
       },
       onLeaveBack: (self) => {
         if (self.direction === -1) {
           iconMoveToOriginalTimeline.restart();
-          console.log("moved to original");
         } else {
           iconMoveToSkillsTimeline.restart();
-          console.log("moved out from about");
         }
       },
     });
@@ -176,11 +173,9 @@ const allIconAnimations = () => {
       start: "top 80%",
       onEnter: () => {
         iconMoveToSkillsTimeline.restart();
-        console.log("moved to skills");
       },
       onLeaveBack: () => {
         iconMoveToAboutFromSkillsTimeline.restart();
-        console.log("moved out from skills");
       },
     });
   });

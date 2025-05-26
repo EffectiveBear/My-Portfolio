@@ -1,17 +1,17 @@
 import React, { use, useEffect, useRef, useState } from "react";
-import backgroundImageInHome from "../assets/home-bg-1.jpg";
-import backgroundImageInHome2 from "../assets/home-bg.jpg";
-import CIcon from "../assets/C-icon.png";
+import backgroundImageInHome from "../../assets/home-bg-1.jpg";
+import backgroundImageInHome2 from "../../assets/home-bg.jpg";
+import CIcon from "../../assets/C-icon.png";
 import { gsap } from "gsap";
-import "./customCSS.css";
+import "../customCSS.css";
 import Typed from "typed.js";
 // import { Link as ScrollLink } from "react-scroll";
 import EducationImported from "./Education/Education";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import myImageIcon from "../assets/my-icon.jpg";
-import myTreatIconPhoto from "../assets/my-treat-photo.jpg";
-import myEngineerIconPhoto from "../assets/my-engineer-photo.jpg";
-import allIconAnimations from "../helpers/top-icon-move";
+import myImageIcon from "../../assets/my-icon.jpg";
+import myTreatIconPhoto from "../../assets/my-treat-photo.jpg";
+import myEngineerIconPhoto from "../../assets/my-engineer-photo.jpg";
+import allIconAnimations from "../../helpers/top-icon-move";
 import { FaReact } from "react-icons/fa";
 import { FaJsSquare } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
@@ -20,7 +20,6 @@ import { MdEventAvailable } from "react-icons/md";
 import { FaMusic } from "react-icons/fa";
 import { TbCliffJumping } from "react-icons/tb";
 import { Link as ScrollLink } from "react-scroll";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

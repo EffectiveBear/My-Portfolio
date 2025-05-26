@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./Education.css";
 import gsap from "gsap";
-import class_10 from "../../assets/10-class.jpg";
-import class_12 from "../../assets/12-class.jpg";
-import bachelor from "../../assets/bachelor.jpg";
+import class_10 from "../../../assets/10-class.jpg";
+import class_12 from "../../../assets/12-class.jpg";
+import bachelor from "../../../assets/bachelor.jpg";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function EducationBox(props) {
