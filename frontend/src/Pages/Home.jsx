@@ -350,8 +350,11 @@ const AboutMe = ({ windowWidth }) => {
             </p>
           </div>
         </div>
-        <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-          <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex  border-8 border-amber-50 ">
+        <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10 relative">
+          <div
+            className="rounded-full w-[21vw] overflow-hidden absolute z-[99] justify-start items-center lg:hidden flex  border-[16px] border-amber-50 "
+            id="about-moving-icon-to-skills"
+          >
             <img
               src={myEngineerIconPhoto}
               alt="my image"
@@ -423,7 +426,9 @@ const Skills = ({ windowWidth }) => {
     const max_radius = 20;
     const min_radius = 8;
     const circleCount = Math.abs(
-      canvasEl.width > height ? canvasEl.width / 80 : canvasEl.height / 60
+      canvasEl.width > canvasEl.height
+        ? canvasEl.width / 80
+        : canvasEl.height / 60
     );
 
     const circles = Array.from({ length: circleCount }, () => ({
@@ -497,7 +502,9 @@ const Skills = ({ windowWidth }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const topIconBox = document.querySelector("#top-moving-photo-icon");
+    const topIconBox = document.querySelector(
+      "#top-moving-photo-icon"
+    );
     const iconBoxPhoto = topIconBox.querySelector("img");
     const skillsBigContainerGsap = document.querySelector(
       ".skills-big-container-gsap"
@@ -518,10 +525,12 @@ const Skills = ({ windowWidth }) => {
             duration: 1,
             x: skillsContainerRectGsap.left + skillsContainerRectGsap.width / 2,
             y: skillsContainerRectGsap.top + skillsContainerRectGsap.height / 2,
+
             xPercent: -50,
             yPercent: -50,
             border: "2.5px solid #4e73dc",
             scale: 10,
+            opacity:1,
             rotate: 0,
             ease: "circ.inOut",
             onStart: () => {
@@ -595,22 +604,22 @@ const Skills = ({ windowWidth }) => {
   }, []);
   return (
     <>
-      <div className="bg-gradient-custom-skills flex justify-center items-center skills-big-container-gsap relative">
-        <canvas id="canvas-bubbles" className="absolute"></canvas>
+      <div className="bg-gradient-custom-skills flex justify-center w-full items-center skills-big-container-gsap relative">
+        <canvas id="canvas-bubbles" className="absolute z-0"></canvas>
         <div className="flex min-h-[50vh] justify-center items-center w-[90vw] flex-col lg:flex-row my-5">
           {/* This div is for floating image */}
-          <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap">
-            {windowWidth < 1024 && (
-              <div className="image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
+          <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap `">
+            {/* {windowWidth < 1024 && ( */}
+              <div className="image-container-gsap absolute top-0 left-0 z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
                 <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-10 border-blue-600">
                   <img
                     src={myTreatIconPhoto}
                     alt="my image"
-                    className="scale-110 object-cover w"
+                    className="scale-110 object-cover "
                   />
                 </div>
               </div>
-            )}
+            {/* )} */}
           </div>
           <div className=" min-w-1/2 min-h-[90%] flex flex-col justify-start items-center my-8 ">
             <h3
@@ -633,7 +642,7 @@ const Skills = ({ windowWidth }) => {
                 return (
                   <div
                     key={key}
-                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex justify-center lg:block`}
+                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex justify-center lg:block z-1`}
                   >
                     {skill}
                   </div>
