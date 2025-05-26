@@ -20,7 +20,7 @@ const Contact = ({ scrollId }) => {
       if (message == "") return toast.error("Please enter your message");
       
 
-      const response = await fetch("http://localhost:5000/api/contact-me", {
+      const response = await fetch("https://p-f-hch4.onrender.com/api/contact-me", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -9,7 +9,7 @@ require("dotenv").config();
 //MIDDLEWARES
 app.use(express.json());
 app.use(cors({
-    // origin: "https://ashutosh-dahal.netlify.app",
+    origin: "https://ashutosh-dahal.netlify.app",
 }))
 app.use("/api", require("./Routes/userRoutes"));
 
