@@ -19,14 +19,14 @@ const Home = () => {
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
-      window.scrollTo(0, 0);
-      location.reload();
+      // window.scrollTo(0, 0);
+      // location.reload();
     });
     return () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth);
-        window.scrollTo(0, 0);
-        location.reload();
+        // window.scrollTo(0, 0);
+        // location.reload();
       });
     };
   }, []);

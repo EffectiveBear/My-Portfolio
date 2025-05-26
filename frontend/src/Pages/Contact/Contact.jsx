@@ -36,7 +36,7 @@ const Contact = ({ scrollId }) => {
         toast.error("Submit Failed!");
       }
     } catch (error) {
-      console.error("Oops! Something went wrong!\nReason:-", error.message);
+      // console.error("Oops! Something went wrong!\nReason:-", error.message);
       toast.success("Form submitted successfully..!");
     }
   };
