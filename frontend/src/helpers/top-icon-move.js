@@ -153,7 +153,7 @@ const allIconAnimations = () => {
           borderTopLeftRadius: "20%",
         },
         "<"
-      );
+      )
     ScrollTrigger.create({
       trigger: ".about-image-container-gsap",
       start: "top 60%",

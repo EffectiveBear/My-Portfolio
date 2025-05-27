@@ -222,10 +222,14 @@ const Hero = () => {
                     maskImage: `linear-gradient(to right, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%)`,
                   }}
                 >
-                  <a href="https://github.com/EffectiveBear" target="_blank">Visit my Github</a>
+                  <a href="https://github.com/EffectiveBear" target="_blank">
+                    Visit my Github
+                  </a>
                 </button>
                 <button className="dark-btn-overlay cursor-pointer text-xs sm:text-sm md:text-lg hero-button-animation-gsap-left absolute w-fit font-extrabold z-9 sm:px-7 sm:py-3 py-3  px-3  rounded-lg text-gray-800 bg-gray-100 titillium-web font-light ">
-                  <a href="https://github.com/EffectiveBear" target="_blank">Visit my Github</a>
+                  <a href="https://github.com/EffectiveBear" target="_blank">
+                    Visit my Github
+                  </a>
                 </button>
               </div>
               <ScrollLink
@@ -562,18 +566,25 @@ const Skills = ({ windowWidth }) => {
           .to(
             ".skills-list-text-animation-gsap",
             {
-              opacity: 1,
-              duration: 0.5,
+              opacity: 0.5,
+              duration: 1,
             },
             "<"
           )
           .set(".skills-list-animation-gsap", {
-            y: (i) => 100 - (100 * i) / 10,
+            y: (i) => {
+              const skillsLength = document.querySelectorAll(
+                ".skills-list-animation-gsap"
+              ).length;
+              return 40 * (Math.abs((skillsLength+1) / 2)-i);
+            },
+            width:0,
             opacity: 0,
           })
           .to(".skills-list-animation-gsap", {
-            duration: 0.75,
+            duration: 0.5,
             stagger: 0.05,
+            width: "",
             y: 0,
             opacity: 1,
             // ease: "bounce.inOut",
