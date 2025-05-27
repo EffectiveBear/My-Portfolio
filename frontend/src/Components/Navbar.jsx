@@ -179,7 +179,7 @@ const Navbar = () => {
           </div>
         </Link>
       </div>
-      <div className="mx-20 my-2">
+      <div className="mx-20 my-5 md:my-2">
         <ul className="flex justify-center items-center xs-gap-reduce gap-10 sm:gap-20 md:gap-15 mr-3">
           {/*this is to compensate for the stagger effect..it staggger onnly for other not for this*/}
           <li className="hidden gsap-updown-custom-animate"></li>{" "}

@@ -358,7 +358,7 @@ const AboutMe = ({ windowWidth }) => {
         </div>
         <div className="about-image-container-gsap basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10 relative">
           <div
-            className="rounded-full w-[40vw] overflow-hidden  z-[99] justify-start items-center lg:hidden flex  border-4 border-amber-50 "
+            className="rounded-full w-[40vw] overflow-hidden mb-5 z-[99] justify-start items-center lg:hidden flex  border-4 border-amber-50 "
             id="about-moving-icon-to-skills"
           >
             <img
@@ -614,7 +614,7 @@ const Skills = ({ windowWidth }) => {
           {/* This div is for floating image */}
           <div className="basis-1/2 min-w-1/2 min-h-full skills-container-gsap `">
             <div className="skill-image-container-gsap  z-1000 basis-2/5 h-2/5 sm:h-full flex justify-center items-center mt-10">
-              <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-[28px] border-blue-700">
+              <div className="rounded-full w-[40vw] overflow-hidden mx-2 justify-start items-center lg:hidden flex border-[15px] sm:border-[25px] border-blue-700">
                 <img
                   src={myTreatIconPhoto}
                   alt="my image"
@@ -630,7 +630,7 @@ const Skills = ({ windowWidth }) => {
             >
               MY SKILLS
             </h3>
-            <div className="lg:flex lg:flex-col lg:gap-1 w-3/4 justify-start grid grid-cols-2 gap-3">
+            <div className="lg:flex lg:flex-col lg:gap-1 w-[90%] sm:w-3/4 justify-center sm:justify-start grid grid-cols-2 gap-3">
               {[
                 {
                   skill: "C/C++",
@@ -639,7 +639,7 @@ const Skills = ({ windowWidth }) => {
                       <img
                         src={CIcon}
                         alt=""
-                        className="w-8 h-8 rounded-full mx-2"
+                        className="w-4 h-4 sm:w-8 sm:h-8 rounded-full mx-2"
                       />
                     </>
                   ),
@@ -690,7 +690,7 @@ const Skills = ({ windowWidth }) => {
                 return (
                   <div
                     key={key}
-                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex flex-row justify-start z-1`}
+                    className={`skills-list-animation-gsap opacity-100 lg:opacity-0 bg-gradient-custom-skills-list text-md sm:text-2xl  my-[10px] py-2 px-4 font-semibold  border-2 border-gray-100 rounded-xl min-w-[90%] cursor-pointer  flex flex-col lg:flex-row justify-start z-1`}
                   >
                     {skill.icon}
                     {skill.skill}
