@@ -566,8 +566,8 @@ const Skills = ({ windowWidth }) => {
           .to(
             ".skills-list-text-animation-gsap",
             {
-              opacity: 0.5,
-              duration: 1,
+              opacity: 1,
+              duration: 0.4,
             },
             "<"
           )
