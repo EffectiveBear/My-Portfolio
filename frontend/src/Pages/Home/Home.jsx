@@ -445,8 +445,8 @@ const Skills = ({ windowWidth }) => {
       x: Math.random() * canvasEl.width,
       y: Math.random() * canvasEl.height,
       radius: Math.random() * max_radius + min_radius,
-      dx: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 4 : 2),
-      dy: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 4 : 2),
+      dx: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 3 : 1.5),
+      dy: (Math.random() - 0.5) * (canvasEl.width > canvasEl.height ? 3 : 1.5),
       color: `hsl(${Math.random() * 360}, 100%, 50%)`,
     }));
 
